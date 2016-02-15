@@ -18,17 +18,14 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the Connect4Health API! You can use this document to access Connect4Health API endpoints.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
 # Authentication
 
 ```shell
 # With shell, you can just pass the correct header with each request
- "https://connecticket.railsfactory.com/api/authorize"
+ "http://connecticket.railsfactory.com/api/authorize"
   In Headers: api_key: "8eb68e28cda407158cf9a8064bdd5351"
               api_secret: "b19fszzt9e2z4wpu87r09zy58"
 ```
@@ -48,7 +45,7 @@ Register the Application with connect4health and get your API_KEY and API_SECRET
 
 ### HTTP Request
 
-`POST https://connecticket.railsfactory.com/api/authorize`
+`POST http://connecticket.railsfactory.com/api/authorize`
 
 ### Query Parameters
 
@@ -68,7 +65,7 @@ This access token should be used in further requests along with api_key and api_
 This endpoint retrieves all tickets.
 
 ```shell
-    "https://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/tickets"
+    "http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/tickets"
   In Headers: api_key: "8eb68e28cda407158cf9a8064bdd5351"
               api_secret: "b19fszzt9e2z4wpu87r09zy58"
 ```
@@ -103,7 +100,7 @@ This endpoint retrieves all tickets.
 ```
 ### HTTP Request
 
-`GET https://connecticket.railsfactory.com/api/<:access_token_got_from_authentication>/tickets`
+`GET http://connecticket.railsfactory.com/api/<:access_token_got_from_authentication>/tickets`
 
 ### Query Parameters
 
