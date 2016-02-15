@@ -26,100 +26,89 @@ This example API documentation page was created with [Slate](https://github.com/
 
 # Authentication
 
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+ "https://connecticket.railsfactory.com/api/authorize"
+  In Headers: api_key: "8eb68e28cda407158cf9a8064bdd5351"
+              api_secret: "b19fszzt9e2z4wpu87r09zy58"
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> The above command returns JSON structured like this:
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+```
+    {
+      "status": true,
+      "message": "Authorized Successfully, Use the Provided Access Token for Future Requests. Thanks for connecting with Example Provider",
+      "access_token": "356kdpiamhkz7a43nu0e2ldr9"
+    }
 ```
 
-```python
-import kittn
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+Register the Application with connect4health and get your API_KEY and API_SECRET. With the api_key and api_secret send a request like below,
+
+### HTTP Request
+
+`GET https://connecticket.railsfactory.com/api/authorize`
+
+### Query Parameters
+
+Send the below parameters in Headers
+
+Parameter | Description
+--------- | -----------
+api_key   | api_key got while registering the application with connect4health
+api_secret| api_secret got while registering the application with connect4health
+
+In Response, Access_token will be provided, with success message, this means that the app and user got authorized successfully.
+This access token should be used in further requests along with api_key and api_secret.
+
+
+# Tickets
+
+## Get All Tickets
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+    "https://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/tickets"
+  In Headers: api_key: "8eb68e28cda407158cf9a8064bdd5351"
+              api_secret: "b19fszzt9e2z4wpu87r09zy58"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
+{
+    "status": "Success",
+    "ticket": [
+        {
+            "start_date": null,
+            "sentsent_to_primary": null,
+            "urgency_status_id": 3,
+            "ticket_type": null,
+            "resident_id": 75474618,
+            "updated_at": "2016/02/12 03:00:34 -0800",
+            "created_at": "2016/02/12 03:00:25 -0800",
+            "email": null,
+            "sent_to_healthcare_pro": null,
+            "state": false,
+            "sms": null,
+            "id": 202,
+            "end_date": null,
+            "ticket_status": "New",
+            "sent_to_family": null,
+            "title": "Ticket  commment",
+            "employee_id": 81987870
+        }
+    ]
+}```
 
-This endpoint retrieves all kittens.
+This endpoint retrieves all tickets.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET https://connecticket.railsfactory.com/api/<:access_token_got_from_authentication>/tickets`
 
-### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
+## Getting a specific Ticket
 
 ```ruby
 require 'kittn'
