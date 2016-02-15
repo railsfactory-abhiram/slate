@@ -121,15 +121,11 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
-
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-
-<p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
+<p>Welcome to the Connect4Health API! You can use this document to access Connect4Health API endpoints.</p>
 
 <h1 id="authentication">Authentication</h1>
 <pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
- <span class="s2">"https://connecticket.railsfactory.com/api/authorize"</span>
+ <span class="s2">"http://connecticket.railsfactory.com/api/authorize"</span>
   In Headers: api_key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
               api_secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
 </code></pre>
@@ -148,7 +144,7 @@
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">POST https://connecticket.railsfactory.com/api/authorize</code></p>
+<p><code class="prettyprint">POST http://connecticket.railsfactory.com/api/authorize</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -176,7 +172,7 @@ This access token should be used in further requests along with api_key and api_
 <h2 id="get-all-tickets">Get All Tickets</h2>
 
 <p>This endpoint retrieves all tickets.</p>
-<pre class="highlight shell"><code>    <span class="s2">"https://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/tickets"</span>
+<pre class="highlight shell"><code>    <span class="s2">"http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/tickets"</span>
   In Headers: api_key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
               api_secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
 </code></pre>
@@ -212,7 +208,7 @@ This access token should be used in further requests along with api_key and api_
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://connecticket.railsfactory.com/api/&lt;:access_token_got_from_authentication&gt;/tickets</code></p>
+<p><code class="prettyprint">GET http://connecticket.railsfactory.com/api/&lt;:access_token_got_from_authentication&gt;/tickets</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
