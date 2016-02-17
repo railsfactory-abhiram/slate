@@ -452,6 +452,14 @@ html, body {
 
   img {
     max-width: 100%;
+  
+  }
+
+  .tocify-wrapper > img
+  {
+    margin-top: 15px !important;
+    margin-left: 15px !important;
+    margin-bottom: 17px !important;
   }
 
   code {
