@@ -1,7 +1,7 @@
-# Errors
+# HTTP Error Codes
 
 
-Error Code | Description
+Code | Description
 ---------- | -------
 400 | Bad Request 
 401 | Unauthorized

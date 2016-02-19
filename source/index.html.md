@@ -18,7 +18,26 @@ search: true
 
 # Introduction
 
-Welcome to the Connect4Health API! You can use this document to access Connect4Health API endpoints.
+### Getting Started
+
+  This session inducts the steps you need to take when you use the Connect4healthcare API. Registering in Connect4healthcare application is mandatory to use the REST APIs provided
+
+### Process
+  General procedure involved in using Connect4healthcare API is very simple. Follow the below steps.
+
+  * Get the authorization. Do the necessary user login steps.
+  * Set up parameters. Decide which parameters you are passing to API and set their values or retrieve those values as input from the user of your application.
+  * Build the request to the API. The request consists of the full URL to the API resource itself, the parameters and their values.
+  * Make the request. You should invoke each request with its appropriate HTTP method: GET, PUT, DELETE, or POST.
+  * Get the response and parse it for the data you need. Some of the data may be contained directly within the response, marked by appropriate tags, and some data may appear in the form of links to other resources.
+  * Use the response data to do further operations. 
+  * The Connect4healthcare API will return the error code for the failed request or actions which helps the developers to know the exact reason for the failure.
+
+### Response Format
+  The response returned can be in either JSON or XML. Each format specifies a way of encoding name-value pairs which comprise the response data. Each format has an associated mime-type which must be returned in the Content-type header along with the response.
+
+### Request Format
+  Access tokens are similar to session tokens. Authorization can be performed with an access token that is submitted with every secure request. Make sure that the Access token is stored securely and make every request with the access token. For every request access_token is sent as an extra parameter. 
 
 
 # Authentication
@@ -33,6 +52,8 @@ Welcome to the Connect4Health API! You can use this document to access Connect4H
 > The above command returns JSON structured like this:
 
 ```
+Success Response:
+
     {
       "status": true,
       "message": "Authorized Successfully, Use the Provided Access Token for Future Requests. Thanks for connecting with Example Provider",
@@ -40,21 +61,43 @@ Welcome to the Connect4Health API! You can use this document to access Connect4H
     }
 ```
 
+```
+Error Response:
 
-Register the Application with connect4health and get your API_KEY and API_SECRET. With the api_key and api_secret send a request like below,
+    {
+      "status": false,
+      "message": "Invalid API key or API secret",
+    }
+```
 
-### HTTP Request
 
-`POST http://connecticket.railsfactory.com/api/authorize`
+
+### Authentication on all endpoints
+We require applications to authenticate all of their requests with Access Token. This visibility allows us to prevent abusive behavior, and it also helps us to further understand how categories of applications are using the API. We apply this understanding to better meet the needs of developers as we continue to evolve the platform. Register the Application with Connect4health and get your API_KEY and API_SECRET. With the api_key and api_secret send a request like below,
+
+### Resource URL
+
+`http://connecticket.railsfactory.com/api/authorize`
+
+### Verb:
+POST
+
+<!-- ### Resource Information -->
+Resource | Information
+--------- | -----------
+Response formats        | JSON
+Requires authentication?| Yes
 
 ### Query Parameters
 
-Parameter | Description
---------- | -----------
-api_key   | api_key got while registering the application with connect4health
-api_secret| api_secret got while registering the application with connect4health
+Parameter | Description | Required/Optional
+--------- | ----------- |------------------
+api_key   | api_key got while registering the application with Connect4health | Required
+          | Example API Key: 8eb68e28cda407158cf9a8064bdd5351
+api_secret| api_secret got while registering the application with Connect4health | Required
+          | Example API Secret: b19fszzt9e2z4wpu87r09zy58
 
-In Response, Access_token will be provided, with success message, this means that the app and user got authorized successfully.
+In Response, Access_token will be provided, with success message, this means that the app and user has been authorized successfully.
 This access token should be used in further requests along with api_key and api_secret.
 
 
@@ -62,7 +105,7 @@ This access token should be used in further requests along with api_key and api_
 
 ## Get All Tickets
 
-This endpoint retrieves all tickets.
+This endpoint retrieves all the tickets created by the provider.
 
 ```shell
     "http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/tickets"
@@ -72,47 +115,70 @@ This endpoint retrieves all tickets.
 
 > The above command returns JSON structured like this:
 
-```json
-{
-    "status": "Success",
-    "ticket": [
-        {
-            "start_date": null,
-            "sentsent_to_primary": null,
-            "urgency_status_id": 3,
-            "ticket_type": null,
-            "resident_id": 75474618,
-            "updated_at": "2016/02/12 03:00:34 -0800",
-            "created_at": "2016/02/12 03:00:25 -0800",
-            "email": null,
-            "sent_to_healthcare_pro": null,
-            "state": false,
-            "sms": null,
-            "id": 202,
-            "end_date": null,
-            "ticket_status": "New",
-            "sent_to_family": null,
-            "title": "Ticket  commment",
-            "employee_id": 81987870
-        }
-    ]
-}
 ```
-### HTTP Request
+  Success response:
 
-`GET http://connecticket.railsfactory.com/api/<:access_token_got_from_authentication>/tickets`
+    {
+        "status": "Success",
+        "ticket": [
+            {
+                "start_date": null,
+                "sentsent_to_primary": null,
+                "urgency_status_id": 3,
+                "ticket_type": null,
+                "resident_id": 75474618,
+                "updated_at": "2016/02/12 03:00:34 -0800",
+                "created_at": "2016/02/12 03:00:25 -0800",
+                "email": null,
+                "sent_to_healthcare_pro": null,
+                "state": false,
+                "sms": null,
+                "id": 202,
+                "end_date": null,
+                "ticket_status": "New",
+                "sent_to_family": null,
+                "title": "Ticket  commment",
+                "employee_id": 81987870
+            }
+        ]
+    }
+```
+
+```
+Error Response:
+
+    {
+      "status": false,
+      "message": "Invalid Credentials",
+    }
+
+```
+### Resource URL
+
+`http://connecticket.railsfactory.com/api/<:access_token_got_from_authentication>/tickets`
+
+### Verb:
+GET
+
+Resource | Information
+--------- | -----------
+Response formats        | JSON
+Requires authentication?| Yes
 
 ### Query Parameters
 
 Send the below parameters in Headers
 
-Parameter | Description
---------- | -----------
-api_key   | api_key got while registering the application with connect4health
-api_secret| api_secret got while registering the application with connect4health
-access_token| Should be sent through url
+Parameter | Description | Required/Optional
+--------- | ----------- | -----------------
+api_key   | api_key got while registering the application with connect4health    |  Required
+          | Example API Key: 8eb68e28cda407158cf9a8064bdd5351
+api_secret| api_secret got while registering the application with connect4health |  Required
+          | Example API Secret: b19fszzt9e2z4wpu87r09zy58
+access_token| Should be sent through url  |  Required
+          | Example Access Token: ssdfsdf7s87878sd878d87fd
 
-With the ***Access token*** provided in the url, the particular provider will be identified, and Residents of that particular
+With the ***Access token*** provided in the url, the particular provider will be identified, and all the tickets created by the 
 provider will be sent.
 
 ## Getting a specific Ticket
@@ -125,66 +191,95 @@ curl "http://connecticket.railsfactory.org/api/356kdpiamhkz7a43nu0e2ldr9/ticket_
 
 > The above command returns JSON structured like this:
 
-```json
-{
-    "ticket_with_details": {
-        "ticket_attachments": [],
-        "ticket": {
-            "start_date": null,
-            "sentsent_to_primary": null,
-            "urgency_status_id": 3,
-            "ticket_type": null,
-            "resident_id": 75474618,
-            "updated_at": "2016/02/12 03:00:34 -0800",
-            "created_at": "2016/02/12 03:00:25 -0800",
-            "email": null,
-            "sent_to_healthcare_pro": null,
-            "state": false,
-            "sms": null,
-            "id": 202,
-            "end_date": null,
-            "ticket_status": "New",
-            "sent_to_family": null,
-            "title": "Ticket  commment",
-            "employee_id": 81987870
-        },
-        "categories": {
-            "6": {
-                "comment378": {
-                    "commented_by": "Sample",
-                    "commented_on": "2016/02/12 03:00:34 -0800",
-                    "title": "comment 1"
-                },
-                "status": "no issue",
-                "title": "check now"
+```
+Success response:
+
+    {
+        "ticket_with_details": {
+            "ticket_attachments": [],
+            "ticket": {
+                "start_date": null,
+                "sentsent_to_primary": null,
+                "urgency_status_id": 3,
+                "ticket_type": null,
+                "resident_id": 75474618,
+                "updated_at": "2016/02/12 03:00:34 -0800",
+                "created_at": "2016/02/12 03:00:25 -0800",
+                "email": null,
+                "sent_to_healthcare_pro": null,
+                "state": false,
+                "sms": null,
+                "id": 202,
+                "end_date": null,
+                "ticket_status": "New",
+                "sent_to_family": null,
+                "title": "Ticket  commment",
+                "employee_id": 81987870
             },
-            "7": {
-                "comment379": {
-                    "commented_by": "Sample",
-                    "commented_on": "2016/02/12 03:00:34 -0800",
-                    "title": "comment 2"
+            "categories": {
+                "6": {
+                    "comment378": {
+                        "commented_by": "Sample",
+                        "commented_on": "2016/02/12 03:00:34 -0800",
+                        "title": "comment 1"
+                    },
+                    "status": "no issue",
+                    "title": "check now"
                 },
-                "status": "issue",
-                "title": "yes add"
+                "7": {
+                    "comment379": {
+                        "commented_by": "Sample",
+                        "commented_on": "2016/02/12 03:00:34 -0800",
+                        "title": "comment 2"
+                    },
+                    "status": "issue",
+                    "title": "yes add"
+                }
             }
         }
     }
-}
 ```
+```
+Error Response:
 
-This endpoint retrieves a specific ticket.
+  Response 1:
+    {
+      "status": false,
+      "message": "Invalid Credentials",
+    }
+  Response 2:
+    {
+      "status": false,
+      "message": "Invalid Ticket ID",
+    }
 
-### HTTP Request
+```
+This endpoint retrieves a specific ticket created by the provider.
 
-`GET http://connecticket.railsfactory.com/api/<:access_token_got_from_authentication>/ticket_detail
+### Resource URL
 
-Parameter | Description
+`http://connecticket.railsfactory.com/api/<:access_token_got_from_authentication>/ticket_detail`
+
+### Verb:
+GET
+
+Resource | Information
 --------- | -----------
-api_key | Should be sent in header
-api_secret | Should be sent in header
-id | Unique ID of the ticket
-access_token| Should be sent through url
+Response formats        | JSON
+Requires authentication?| Yes
 
+Parameter | Description | Required/Optional
+--------- | ----------- | -----------------
+api_key   | api_key got while registering the application with connect4health    |  Required
+          | Example API Key: 8eb68e28cda407158cf9a8064bdd5351
+api_secret| api_secret got while registering the application with connect4health |  Required
+          | Example API Secret: b19fszzt9e2z4wpu87r09zy58
+access_token| Should be sent through url  |  Required
+          | Example Access Token: ssdfsdf7s87878sd878d87fd
+id | Unique ID of the ticket  |   Required
+   | Example ID: 12
+
+Access Token helps in identifying the respective provider. The Ticket ID helps in displaying the respective ticket.  
 
 
 ## Get All Residents
@@ -197,95 +292,115 @@ access_token| Should be sent through url
 
 > The above command returns JSON structured like this:
 
-```json
-{
-    "status": "Success",
-    "residents": [
-        {
-            "fax_number": null,
-            "caretracker_id": null,
-            "resident_type_id": null,
-            "provider_id": 72136196,
-            "photo_content_type": "",
-            "first_name": "Test Case (Provider Type)",
-            "next_status_update": null,
-            "id": 889283349,
-            "state": "active",
-            "photo_file_name": "",
-            "creator_id": 0,
-            "last_status_update": null,
-            "home_zip": "534412",
-            "in_home_care": false,
-            "home_address2": "",
-            "home_address1": "123 Mockingbird Lane",
-            "email": null,
-            "customer_number": null,
-            "updated_at": "2016/02/07 02:57:51 -0800",
-            "review_updates": null,
-            "updater_id": 0,
-            "location": "Assisted Living Apt. 204",
-            "home_city": "New York",
-            "photo_file_size": 0,
-            "home_state": "NY",
-            "dob": "1937/01/21",
-            "last_name": null,
-            "demo": false,
-            "phone_number": null,
-            "created_at": "2016/02/07 02:57:51 -0800",
-            "account_number": null
-        },
-        {
-            "fax_number": null,
-            "caretracker_id": null,
-            "resident_type_id": 1058366525,
-            "provider_id": 72136196,
-            "photo_content_type": "",
-            "first_name": "Test Doctor",
-            "next_status_update": null,
-            "id": 501333996,
-            "state": "active",
-            "photo_file_name": "",
-            "creator_id": 0,
-            "last_status_update": null,
-            "home_zip": "534412",
-            "in_home_care": false,
-            "home_address2": "",
-            "home_address1": "123 Mockingbird Lane",
-            "email": null,
-            "customer_number": null,
-            "updated_at": "2016/02/07 02:57:51 -0800",
-            "review_updates": null,
-            "updater_id": 0,
-            "location": "Assisted Living Apt. 204",
-            "home_city": "New York",
-            "photo_file_size": 0,
-            "home_state": "NY",
-            "dob": "1937/01/21",
-            "last_name": null,
-            "demo": false,
-            "phone_number": null,
-            "created_at": "2016/02/07 02:57:51 -0800",
-            "account_number": null
-        }
-    ]
-}
 ```
+Success Response:
+    {
+        "status": "Success",
+        "residents": [
+            {
+                "fax_number": null,
+                "caretracker_id": null,
+                "resident_type_id": null,
+                "provider_id": 72136196,
+                "photo_content_type": "",
+                "first_name": "Test Case (Provider Type)",
+                "next_status_update": null,
+                "id": 889283349,
+                "state": "active",
+                "photo_file_name": "",
+                "creator_id": 0,
+                "last_status_update": null,
+                "home_zip": "534412",
+                "in_home_care": false,
+                "home_address2": "",
+                "home_address1": "123 Mockingbird Lane",
+                "email": null,
+                "customer_number": null,
+                "updated_at": "2016/02/07 02:57:51 -0800",
+                "review_updates": null,
+                "updater_id": 0,
+                "location": "Assisted Living Apt. 204",
+                "home_city": "New York",
+                "photo_file_size": 0,
+                "home_state": "NY",
+                "dob": "1937/01/21",
+                "last_name": null,
+                "demo": false,
+                "phone_number": null,
+                "created_at": "2016/02/07 02:57:51 -0800",
+                "account_number": null
+            },
+            {
+                "fax_number": null,
+                "caretracker_id": null,
+                "resident_type_id": 1058366525,
+                "provider_id": 72136196,
+                "photo_content_type": "",
+                "first_name": "Test Doctor",
+                "next_status_update": null,
+                "id": 501333996,
+                "state": "active",
+                "photo_file_name": "",
+                "creator_id": 0,
+                "last_status_update": null,
+                "home_zip": "534412",
+                "in_home_care": false,
+                "home_address2": "",
+                "home_address1": "123 Mockingbird Lane",
+                "email": null,
+                "customer_number": null,
+                "updated_at": "2016/02/07 02:57:51 -0800",
+                "review_updates": null,
+                "updater_id": 0,
+                "location": "Assisted Living Apt. 204",
+                "home_city": "New York",
+                "photo_file_size": 0,
+                "home_state": "NY",
+                "dob": "1937/01/21",
+                "last_name": null,
+                "demo": false,
+                "phone_number": null,
+                "created_at": "2016/02/07 02:57:51 -0800",
+                "account_number": null
+            }
+        ]
+    }
+```
+```
+Error Response:
 
-This endpoint retrieves all Resident details of a particular provider.
+    {
+      "status": false,
+      "message": "Invalid Credentials",
+    }
 
-### HTTP Request
+```
+This endpoint retrieves the details of all the Residents of a particular provider.
 
-`GET http://connecticket.railsfactory.com/api/<:access_token_got_from_authentication>/all_residents`
+### Resource URL
+
+`http://connecticket.railsfactory.com/api/<:access_token_got_from_authentication>/all_residents`
+
+### Verb:
+GET
+
+Resource | Information
+--------- | -----------
+Response formats        | JSON
+Requires authentication?| Yes
+
+
+Parameter | Description | Required/Optional
+--------- | ----------- | -----------------
+api_key   | api_key got while registering the application with connect4health    |  Required
+          | Example API Key: 8eb68e28cda407158cf9a8064bdd5351
+api_secret| api_secret got while registering the application with connect4health |  Required
+          | Example API Secret: b19fszzt9e2z4wpu87r09zy58
+access_token| Should be sent through url  |  Required
+          | Example Access Token: ssdfsdf7s87878sd878d87fd
 
 With the ***Access token*** provided in the url, the particular provider will be identified, and Residents of that particular
-provider will be sent.
-
-Parameter | Description
---------- | -----------
-api_key | Should be sent in header
-api_secret | Should be sent in header
-access_token| Should be sent through url
-
+provider will be sent in response.
 ## Get Categories
 
 ```shell
@@ -296,7 +411,8 @@ access_token| Should be sent through url
 
 > The above command returns JSON structured like this:
 
-```json
+```
+Success Response"
 {
     "status": "Success",
     "categories": [{"id": 3, "name": "Clinical Edit"},
@@ -305,60 +421,43 @@ access_token| Should be sent through url
                   {"id": 3, "name": "Weight Gain"}]
  }
 ```
+```
+Error Response:
 
-This endpoint will retrieve all the categories that comes under a particulan provider. These categories status needs to be set
+    {
+      "status": false,
+      "message": "Invalid Credentials",
+    }
+  
+```
+
+This endpoint will retrieve all the ticket categories created by particular provider. These categories have three status that needs to be set
 while creating a ticket.
 
-### HTTP Request
+### Resource URL
 
-`GET http://connecticket.railsfactory.com/api/<:access_token_got_from_authentication>/provider_categories`
+`http://connecticket.railsfactory.com/api/<:access_token_got_from_authentication>/provider_categories`
+
+### Verb:
+GET
+
+Resource | Information
+--------- | -----------
+Response formats        | JSON
+Requires authentication?| Yes
+
+
+Parameter | Description | Required/Optional
+--------- | ----------- | -----------------
+api_key   | api_key got while registering the application with connect4health    |  Required
+          | Example API Key: 8eb68e28cda407158cf9a8064bdd5351
+api_secret| api_secret got while registering the application with connect4health |  Required
+          | Example API Secret: b19fszzt9e2z4wpu87r09zy58
+access_token| Should be sent through url  |  Required
+          | Example Access Token: ssdfsdf7s87878sd878d87fd
 
 With the ***Access token*** provided in the url, the particular provider will be identified, and Categories of that particular
 provider will be sent.
-
-Parameter | Description
---------- | -----------
-api_key | Should be sent in header
-api_secret | Should be sent in header
-access_token| Should be sent through url
-
-
-## Update Status of a Ticket
-
-```shell
-    "http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/update_status?id=202&status=Reopen"
-  In Headers: api_key: "8eb68e28cda407158cf9a8064bdd5351"
-              api_secret: "b19fszzt9e2z4wpu87r09zy58"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-    "status": "Success",
-    "message": "Status Updated Successfully!!"
-     }
-```
-
-This endpoint will retrieve all the categories that comes under a particulan provider. These categories status needs to be set
-while creating a ticket.
-
-### HTTP Request
-
-`POST http://connecticket.railsfactory.com/api/<:access_token_got_from_authentication>/update_status`
-
-With the ***Access token*** provided in the url, the particular provider will be identified, and Categories of that particular
-provider will be sent.
-
-Parameter | Description
---------- | -----------
-api_key | Should be sent in header
-api_secret | Should be sent in header
-access_token| Should be sent through url
-id | Ticket id 
-status | status to be set for the ticket
-
-
 
 ## Create Ticket
 
@@ -370,37 +469,132 @@ status | status to be set for the ticket
 
 > The above command returns JSON structured like this:
 
-```json
-{
+```
+  Success Response:
+  
+  {
     "status": "Success",
     "ticket_id": 46,
     "message": "Ticket Created Successfully!!"
-     }
+  }
+```
+
+```
+  Error Response:
+  
+  {
+    "status": "false",
+    "message": "Invalid credentials!!"
+  }
 ```
 
 This endpoint will create a ticket for a particular provider.
 
-### HTTP Request
+### Resource URL
 
 `GET http://connecticket.railsfactory.com/api/<:access_token_got_from_authentication>/provider_categories`
 
-With the ***Access token*** provided in the url, the particular provider will be identified, and Categories of that particular
-provider will be sent.
+### Verb:
+GET
 
-Parameter | Description
+Resource | Information
 --------- | -----------
-api_key | Should be sent in header
-api_secret | Should be sent in header
-access_token| Should be sent through url
+Response formats        | JSON
+Requires authentication?| Yes
 
-Parameters to be sent: "title", "resident_id", "sms", "email", "state", "urgency_status","ticket_status".
-Along with these parameters: Category status also should be set. Category details of a particular provider cant be fetched
+Parameter | Description | Required/Optional
+--------- | ----------- | -----------------
+api_key   | api_key got while registering the application with connect4health    |  Required
+          | Example API Key: 8eb68e28cda407158cf9a8064bdd5351
+api_secret| api_secret got while registering the application with connect4health |  Required
+          | Example API Secret: b19fszzt9e2z4wpu87r09zy58
+access_token| Should be sent through url  |  Required
+          | Example Access Token: ssdfsdf7s87878sd878d87fd
+title     | title of ticket   | Optional
+          | Example Title: new test ticket
+resident_id | id of the particular subscriber whom the ticket is created | Required
+            | Example Resident ID: 34333
+sms   | sms notification for the recipient  | optional
+      | Example sms: true
+email | email notification for the recipient  | optional
+      | Example email: true
+state |   | optional
+      | Example state: true
+urgency_status | urgency status of the ticket  | Required
+               | Example Urgency Status: No Issue / Exception
+ticket_status  | status of the ticket   | Required
+               | Example Ticket Status: New
+
+Along with the above parameters: Category status also should be set. Category details of a particular provider can't be fetched
 from "Provider Categories" end point. Category status should be sent like below along with the parameters above.
+
 Parameter | Status
 --------- | -----------
 category_19 | "Issue"
 category_22| "No Issue"
 category_33| "Potential Issue"
 
-Once the above parameters sent to the above end point, ticket will be created and a success status will be sent.
+Once the parameters are sent to the end point, ticket will be created and a success status will be sent.
 
+## Ticket status update
+
+```shell
+    "http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/update_status?id=202&status=Reopen"
+  In Headers: api_key: "8eb68e28cda407158cf9a8064bdd5351"
+              api_secret: "b19fszzt9e2z4wpu87r09zy58"
+```
+
+> The above command returns JSON structured like this:
+
+```
+Success Response:
+  {
+    "status": "Success",
+    "message": "Status Updated Successfully!!"
+  }
+```
+```
+Error Response:
+
+  Response 1:
+    {
+      "status": false,
+      "message": "Invalid Credentials",
+    }
+  Response 2:
+    {
+      "status": false,
+      "message": "Invalid Ticket ID",
+    }
+```
+This end point updates the status of the ticket changed by the provider. 
+
+
+### Resource URL
+
+`http://connecticket.railsfactory.com/api/<:access_token_got_from_authentication>/update_status`
+
+### Verb:
+POST
+
+Resource | Information
+--------- | -----------
+Response formats        | JSON
+Requires authentication?| Yes
+
+
+Parameter | Description | Required/Optional
+--------- | ----------- | -----------------
+api_key   | api_key got while registering the application with connect4health    |  Required
+          | Example API Key: 8eb68e28cda407158cf9a8064bdd5351
+api_secret| api_secret got while registering the application with connect4health |  Required
+          | Example API Secret: b19fszzt9e2z4wpu87r09zy58
+access_token| Should be sent through url  |  Required
+          | Example Access Token: ssdfsdf7s87878sd878d87fd
+id | Unique ID of the ticket  |   Required
+   | Example ID: 12
+status | status to be set for the ticket | Required
+       | Example status: In Progress
+
+
+With the respective Ticket ID, the status of the ticket updates.
