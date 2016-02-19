@@ -121,7 +121,31 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the Connect4Health API! You can use this document to access Connect4Health API endpoints.</p>
+<h3 id="getting-started">Getting Started</h3>
+
+<p>This session inducts the steps you need to take when you use the Connect4healthcare API. Registering in Connect4healthcare application is mandatory to use the REST APIs provided</p>
+
+<h3 id="process">Process</h3>
+
+<p>General procedure involved in using Connect4healthcare API is very simple. Follow the below steps.</p>
+
+<ul>
+<li>Get the authorization. Do the necessary user login steps.</li>
+<li>Set up parameters. Decide which parameters you are passing to API and set their values or retrieve those values as input from the user of your application.</li>
+<li>Build the request to the API. The request consists of the full URL to the API resource itself, the parameters and their values.</li>
+<li>Make the request. You should invoke each request with its appropriate HTTP method: GET, PUT, DELETE, or POST.</li>
+<li>Get the response and parse it for the data you need. Some of the data may be contained directly within the response, marked by appropriate tags, and some data may appear in the form of links to other resources.</li>
+<li>Use the response data to do further operations. </li>
+<li>The Connect4healthcare API will return the error code for the failed request or actions which helps the developers to know the exact reason for the failure.</li>
+</ul>
+
+<h3 id="response-format">Response Format</h3>
+
+<p>The response returned can be in either JSON or XML. Each format specifies a way of encoding name-value pairs which comprise the response data. Each format has an associated mime-type which must be returned in the Content-type header along with the response.</p>
+
+<h3 id="request-format">Request Format</h3>
+
+<p>Access tokens are similar to session tokens. Authorization can be performed with an access token that is submitted with every secure request. Make sure that the Access token is stored securely and make every request with the access token. For every request access_token is sent as an extra parameter. </p>
 
 <h1 id="authentication">Authentication</h1>
 <pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
@@ -133,18 +157,51 @@
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json"><code><span class="w">    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Authorized Successfully, Use the Provided Access Token for Future Requests. Thanks for connecting with Example Provider"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"356kdpiamhkz7a43nu0e2ldr9"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span></code></pre>
+<pre class="highlight plaintext"><code>Success Response:
 
-<p>Register the Application with connect4health and get your API_KEY and API_SECRET. With the api_key and api_secret send a request like below,</p>
+    {
+      "status": true,
+      "message": "Authorized Successfully, Use the Provided Access Token for Future Requests. Thanks for connecting with Example Provider",
+      "access_token": "356kdpiamhkz7a43nu0e2ldr9"
+    }
+</code></pre>
+<pre class="highlight plaintext"><code>Error Response:
 
-<h3 id="http-request">HTTP Request</h3>
+    {
+      "status": false,
+      "message": "Invalid API key or API secret",
+    }
+</code></pre>
 
-<p><code class="prettyprint">POST http://connecticket.railsfactory.com/api/authorize</code></p>
+<h3 id="authentication-on-all-endpoints">Authentication on all endpoints</h3>
+
+<p>We require applications to authenticate all of their requests with Access Token. This visibility allows us to prevent abusive behavior, and it also helps us to further understand how categories of applications are using the API. We apply this understanding to better meet the needs of developers as we continue to evolve the platform. Register the Application with Connect4health and get your API_KEY and API_SECRET. With the api_key and api_secret send a request like below,</p>
+
+<h3 id="resource-url">Resource URL</h3>
+
+<p><code class="prettyprint">http://connecticket.railsfactory.com/api/authorize</code></p>
+
+<h3 id="verb">Verb:</h3>
+
+<p>POST</p>
+
+<!-- ### Resource Information -->
+
+<table><thead>
+<tr>
+<th>Resource</th>
+<th>Information</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Response formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>Requires authentication?</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -152,26 +209,39 @@
 <tr>
 <th>Parameter</th>
 <th>Description</th>
+<th>Required/Optional</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>api_key</td>
-<td>api_key got while registering the application with connect4health</td>
+<td>api_key got while registering the application with Connect4health</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example API Key: 8eb68e28cda407158cf9a8064bdd5351</td>
+<td></td>
 </tr>
 <tr>
 <td>api_secret</td>
-<td>api_secret got while registering the application with connect4health</td>
+<td>api_secret got while registering the application with Connect4health</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example API Secret: b19fszzt9e2z4wpu87r09zy58</td>
+<td></td>
 </tr>
 </tbody></table>
 
-<p>In Response, Access_token will be provided, with success message, this means that the app and user got authorized successfully.
+<p>In Response, Access_token will be provided, with success message, this means that the app and user has been authorized successfully.
 This access token should be used in further requests along with api_key and api_secret.</p>
 
 <h1 id="tickets">Tickets</h1>
 
 <h2 id="get-all-tickets">Get All Tickets</h2>
 
-<p>This endpoint retrieves all tickets.</p>
+<p>This endpoint retrieves all the tickets created by the provider.</p>
 <pre class="highlight shell"><code>    <span class="s2">"http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/tickets"</span>
   In Headers: api_key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
               api_secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
@@ -180,35 +250,65 @@ This access token should be used in further requests along with api_key and api_
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"ticket"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"sentsent_to_primary"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"urgency_status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"ticket_type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"resident_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75474618</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016/02/12 03:00:34 -0800"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016/02/12 03:00:25 -0800"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"sent_to_healthcare_pro"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"sms"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">202</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"end_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"ticket_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"sent_to_family"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ticket  commment"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">81987870</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<pre class="highlight plaintext"><code>  Success response:
 
-<h3 id="http-request">HTTP Request</h3>
+    {
+        "status": "Success",
+        "ticket": [
+            {
+                "start_date": null,
+                "sentsent_to_primary": null,
+                "urgency_status_id": 3,
+                "ticket_type": null,
+                "resident_id": 75474618,
+                "updated_at": "2016/02/12 03:00:34 -0800",
+                "created_at": "2016/02/12 03:00:25 -0800",
+                "email": null,
+                "sent_to_healthcare_pro": null,
+                "state": false,
+                "sms": null,
+                "id": 202,
+                "end_date": null,
+                "ticket_status": "New",
+                "sent_to_family": null,
+                "title": "Ticket  commment",
+                "employee_id": 81987870
+            }
+        ]
+    }
+</code></pre>
+<pre class="highlight plaintext"><code>Error Response:
 
-<p><code class="prettyprint">GET http://connecticket.railsfactory.com/api/&lt;:access_token_got_from_authentication&gt;/tickets</code></p>
+    {
+      "status": false,
+      "message": "Invalid Credentials",
+    }
+
+</code></pre>
+
+<h3 id="resource-url">Resource URL</h3>
+
+<p><code class="prettyprint">http://connecticket.railsfactory.com/api/&lt;:access_token_got_from_authentication&gt;/tickets</code></p>
+
+<h3 id="verb">Verb:</h3>
+
+<p>GET</p>
+
+<table><thead>
+<tr>
+<th>Resource</th>
+<th>Information</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Response formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>Requires authentication?</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -218,23 +318,42 @@ This access token should be used in further requests along with api_key and api_
 <tr>
 <th>Parameter</th>
 <th>Description</th>
+<th>Required/Optional</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>api_key</td>
 <td>api_key got while registering the application with connect4health</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example API Key: 8eb68e28cda407158cf9a8064bdd5351</td>
+<td></td>
 </tr>
 <tr>
 <td>api_secret</td>
 <td>api_secret got while registering the application with connect4health</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example API Secret: b19fszzt9e2z4wpu87r09zy58</td>
+<td></td>
 </tr>
 <tr>
 <td>access_token</td>
 <td>Should be sent through url</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example Access Token: ssdfsdf7s87878sd878d87fd</td>
+<td></td>
 </tr>
 </tbody></table>
 
-<p>With the <strong><em>Access token</em></strong> provided in the url, the particular provider will be identified, and Residents of that particular
+<p>With the <strong><em>Access token</em></strong> provided in the url, the particular provider will be identified, and all the tickets created by the 
 provider will be sent.</p>
 
 <h2 id="getting-a-specific-ticket">Getting a specific Ticket</h2>
@@ -246,81 +365,144 @@ provider will be sent.</p>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"ticket_with_details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"ticket_attachments"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-        </span><span class="nt">"ticket"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"sentsent_to_primary"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"urgency_status_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"ticket_type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"resident_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75474618</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016/02/12 03:00:34 -0800"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016/02/12 03:00:25 -0800"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"sent_to_healthcare_pro"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"sms"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">202</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"end_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"ticket_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"sent_to_family"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ticket  commment"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">81987870</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="nt">"categories"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"6"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"comment378"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="nt">"commented_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sample"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"commented_on"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016/02/12 03:00:34 -0800"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"comment 1"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"no issue"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"check now"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"7"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"comment379"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="nt">"commented_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sample"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"commented_on"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016/02/12 03:00:34 -0800"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"comment 2"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"issue"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"yes add"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<pre class="highlight plaintext"><code>Success response:
 
-<p>This endpoint retrieves a specific ticket.</p>
+    {
+        "ticket_with_details": {
+            "ticket_attachments": [],
+            "ticket": {
+                "start_date": null,
+                "sentsent_to_primary": null,
+                "urgency_status_id": 3,
+                "ticket_type": null,
+                "resident_id": 75474618,
+                "updated_at": "2016/02/12 03:00:34 -0800",
+                "created_at": "2016/02/12 03:00:25 -0800",
+                "email": null,
+                "sent_to_healthcare_pro": null,
+                "state": false,
+                "sms": null,
+                "id": 202,
+                "end_date": null,
+                "ticket_status": "New",
+                "sent_to_family": null,
+                "title": "Ticket  commment",
+                "employee_id": 81987870
+            },
+            "categories": {
+                "6": {
+                    "comment378": {
+                        "commented_by": "Sample",
+                        "commented_on": "2016/02/12 03:00:34 -0800",
+                        "title": "comment 1"
+                    },
+                    "status": "no issue",
+                    "title": "check now"
+                },
+                "7": {
+                    "comment379": {
+                        "commented_by": "Sample",
+                        "commented_on": "2016/02/12 03:00:34 -0800",
+                        "title": "comment 2"
+                    },
+                    "status": "issue",
+                    "title": "yes add"
+                }
+            }
+        }
+    }
+</code></pre>
+<pre class="highlight plaintext"><code>Error Response:
 
-<h3 id="http-request">HTTP Request</h3>
+  Response 1:
+    {
+      "status": false,
+      "message": "Invalid Credentials",
+    }
+  Response 2:
+    {
+      "status": false,
+      "message": "Invalid Ticket ID",
+    }
 
-<p>`GET http://connecticket.railsfactory.com/api/&lt;:access_token_got_from_authentication&gt;/ticket_detail</p>
+</code></pre>
+
+<p>This endpoint retrieves a specific ticket created by the provider.</p>
+
+<h3 id="resource-url">Resource URL</h3>
+
+<p><code class="prettyprint">http://connecticket.railsfactory.com/api/&lt;:access_token_got_from_authentication&gt;/ticket_detail</code></p>
+
+<h3 id="verb">Verb:</h3>
+
+<p>GET</p>
+
+<table><thead>
+<tr>
+<th>Resource</th>
+<th>Information</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Response formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>Requires authentication?</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Description</th>
+<th>Required/Optional</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>api_key</td>
-<td>Should be sent in header</td>
+<td>api_key got while registering the application with connect4health</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example API Key: 8eb68e28cda407158cf9a8064bdd5351</td>
+<td></td>
 </tr>
 <tr>
 <td>api_secret</td>
-<td>Should be sent in header</td>
+<td>api_secret got while registering the application with connect4health</td>
+<td>Required</td>
 </tr>
 <tr>
-<td>id</td>
-<td>Unique ID of the ticket</td>
+<td></td>
+<td>Example API Secret: b19fszzt9e2z4wpu87r09zy58</td>
+<td></td>
 </tr>
 <tr>
 <td>access_token</td>
 <td>Should be sent through url</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example Access Token: ssdfsdf7s87878sd878d87fd</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>Unique ID of the ticket</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example ID: 12</td>
+<td></td>
 </tr>
 </tbody></table>
+
+<p>Access Token helps in identifying the respective provider. The Ticket ID helps in displaying the respective ticket.  </p>
 
 <h2 id="get-all-residents">Get All Residents</h2>
 <pre class="highlight shell"><code>    <span class="s2">"http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/all_residents"</span>
@@ -331,107 +513,155 @@ provider will be sent.</p>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"residents"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"fax_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"caretracker_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"resident_type_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"provider_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">72136196</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"photo_content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test Case (Provider Type)"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"next_status_update"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">889283349</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"photo_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"creator_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"last_status_update"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"home_zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"534412"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"in_home_care"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"home_address2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"home_address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Mockingbird Lane"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"customer_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016/02/07 02:57:51 -0800"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"review_updates"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"updater_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Assisted Living Apt. 204"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"home_city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New York"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"photo_file_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"home_state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NY"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"dob"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1937/01/21"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"demo"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016/02/07 02:57:51 -0800"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"account_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"fax_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"caretracker_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"resident_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1058366525</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"provider_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">72136196</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"photo_content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test Doctor"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"next_status_update"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">501333996</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"photo_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"creator_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"last_status_update"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"home_zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"534412"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"in_home_care"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"home_address2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"home_address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Mockingbird Lane"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"customer_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016/02/07 02:57:51 -0800"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"review_updates"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"updater_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Assisted Living Apt. 204"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"home_city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New York"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"photo_file_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"home_state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NY"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"dob"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1937/01/21"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"demo"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016/02/07 02:57:51 -0800"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"account_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<pre class="highlight plaintext"><code>Success Response:
+    {
+        "status": "Success",
+        "residents": [
+            {
+                "fax_number": null,
+                "caretracker_id": null,
+                "resident_type_id": null,
+                "provider_id": 72136196,
+                "photo_content_type": "",
+                "first_name": "Test Case (Provider Type)",
+                "next_status_update": null,
+                "id": 889283349,
+                "state": "active",
+                "photo_file_name": "",
+                "creator_id": 0,
+                "last_status_update": null,
+                "home_zip": "534412",
+                "in_home_care": false,
+                "home_address2": "",
+                "home_address1": "123 Mockingbird Lane",
+                "email": null,
+                "customer_number": null,
+                "updated_at": "2016/02/07 02:57:51 -0800",
+                "review_updates": null,
+                "updater_id": 0,
+                "location": "Assisted Living Apt. 204",
+                "home_city": "New York",
+                "photo_file_size": 0,
+                "home_state": "NY",
+                "dob": "1937/01/21",
+                "last_name": null,
+                "demo": false,
+                "phone_number": null,
+                "created_at": "2016/02/07 02:57:51 -0800",
+                "account_number": null
+            },
+            {
+                "fax_number": null,
+                "caretracker_id": null,
+                "resident_type_id": 1058366525,
+                "provider_id": 72136196,
+                "photo_content_type": "",
+                "first_name": "Test Doctor",
+                "next_status_update": null,
+                "id": 501333996,
+                "state": "active",
+                "photo_file_name": "",
+                "creator_id": 0,
+                "last_status_update": null,
+                "home_zip": "534412",
+                "in_home_care": false,
+                "home_address2": "",
+                "home_address1": "123 Mockingbird Lane",
+                "email": null,
+                "customer_number": null,
+                "updated_at": "2016/02/07 02:57:51 -0800",
+                "review_updates": null,
+                "updater_id": 0,
+                "location": "Assisted Living Apt. 204",
+                "home_city": "New York",
+                "photo_file_size": 0,
+                "home_state": "NY",
+                "dob": "1937/01/21",
+                "last_name": null,
+                "demo": false,
+                "phone_number": null,
+                "created_at": "2016/02/07 02:57:51 -0800",
+                "account_number": null
+            }
+        ]
+    }
+</code></pre>
+<pre class="highlight plaintext"><code>Error Response:
 
-<p>This endpoint retrieves all Resident details of a particular provider.</p>
+    {
+      "status": false,
+      "message": "Invalid Credentials",
+    }
 
-<h3 id="http-request">HTTP Request</h3>
+</code></pre>
 
-<p><code class="prettyprint">GET http://connecticket.railsfactory.com/api/&lt;:access_token_got_from_authentication&gt;/all_residents</code></p>
+<p>This endpoint retrieves the details of all the Residents of a particular provider.</p>
 
-<p>With the <strong><em>Access token</em></strong> provided in the url, the particular provider will be identified, and Residents of that particular
-provider will be sent.</p>
+<h3 id="resource-url">Resource URL</h3>
+
+<p><code class="prettyprint">http://connecticket.railsfactory.com/api/&lt;:access_token_got_from_authentication&gt;/all_residents</code></p>
+
+<h3 id="verb">Verb:</h3>
+
+<p>GET</p>
+
+<table><thead>
+<tr>
+<th>Resource</th>
+<th>Information</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Response formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>Requires authentication?</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Description</th>
+<th>Required/Optional</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>api_key</td>
-<td>Should be sent in header</td>
+<td>api_key got while registering the application with connect4health</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example API Key: 8eb68e28cda407158cf9a8064bdd5351</td>
+<td></td>
 </tr>
 <tr>
 <td>api_secret</td>
-<td>Should be sent in header</td>
+<td>api_secret got while registering the application with connect4health</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example API Secret: b19fszzt9e2z4wpu87r09zy58</td>
+<td></td>
 </tr>
 <tr>
 <td>access_token</td>
 <td>Should be sent through url</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example Access Token: ssdfsdf7s87878sd878d87fd</td>
+<td></td>
 </tr>
 </tbody></table>
+
+<p>With the <strong><em>Access token</em></strong> provided in the url, the particular provider will be identified, and Residents of that particular
+provider will be sent in response.</p>
 
 <h2 id="get-categories">Get Categories</h2>
 <pre class="highlight shell"><code>    <span class="s2">"http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/provider_categories"</span>
@@ -442,97 +672,92 @@ provider will be sent.</p>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"categories"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Clinical Edit"</span><span class="p">},</span><span class="w">
-                  </span><span class="p">{</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Emergency"</span><span class="p">},</span><span class="w">
-                  </span><span class="p">{</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Activity Level"</span><span class="p">},</span><span class="w">
-                  </span><span class="p">{</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Weight Gain"</span><span class="p">}]</span><span class="w">
- </span><span class="p">}</span><span class="w">
-</span></code></pre>
+<pre class="highlight plaintext"><code>Success Response"
+{
+    "status": "Success",
+    "categories": [{"id": 3, "name": "Clinical Edit"},
+                  {"id": 3, "name": "Emergency"},
+                  {"id": 3, "name": "Activity Level"},
+                  {"id": 3, "name": "Weight Gain"}]
+ }
+</code></pre>
+<pre class="highlight plaintext"><code>Error Response:
 
-<p>This endpoint will retrieve all the categories that comes under a particulan provider. These categories status needs to be set
-while creating a ticket.</p>
+    {
+      "status": false,
+      "message": "Invalid Credentials",
+    }
 
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET http://connecticket.railsfactory.com/api/&lt;:access_token_got_from_authentication&gt;/provider_categories</code></p>
-
-<p>With the <strong><em>Access token</em></strong> provided in the url, the particular provider will be identified, and Categories of that particular
-provider will be sent.</p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>api_key</td>
-<td>Should be sent in header</td>
-</tr>
-<tr>
-<td>api_secret</td>
-<td>Should be sent in header</td>
-</tr>
-<tr>
-<td>access_token</td>
-<td>Should be sent through url</td>
-</tr>
-</tbody></table>
-
-<h2 id="update-status-of-a-ticket">Update Status of a Ticket</h2>
-<pre class="highlight shell"><code>    <span class="s2">"http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/update_status?id=202&amp;status=Reopen"</span>
-  In Headers: api_key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
-              api_secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
 </code></pre>
 
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Status Updated Successfully!!"</span><span class="w">
-     </span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>This endpoint will retrieve all the categories that comes under a particulan provider. These categories status needs to be set
+<p>This endpoint will retrieve all the ticket categories created by particular provider. These categories have three status that needs to be set
 while creating a ticket.</p>
 
-<h3 id="http-request">HTTP Request</h3>
+<h3 id="resource-url">Resource URL</h3>
 
-<p><code class="prettyprint">POST http://connecticket.railsfactory.com/api/&lt;:access_token_got_from_authentication&gt;/update_status</code></p>
+<p><code class="prettyprint">http://connecticket.railsfactory.com/api/&lt;:access_token_got_from_authentication&gt;/provider_categories</code></p>
 
-<p>With the <strong><em>Access token</em></strong> provided in the url, the particular provider will be identified, and Categories of that particular
-provider will be sent.</p>
+<h3 id="verb">Verb:</h3>
+
+<p>GET</p>
+
+<table><thead>
+<tr>
+<th>Resource</th>
+<th>Information</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Response formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>Requires authentication?</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Description</th>
+<th>Required/Optional</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>api_key</td>
-<td>Should be sent in header</td>
+<td>api_key got while registering the application with connect4health</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example API Key: 8eb68e28cda407158cf9a8064bdd5351</td>
+<td></td>
 </tr>
 <tr>
 <td>api_secret</td>
-<td>Should be sent in header</td>
+<td>api_secret got while registering the application with connect4health</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example API Secret: b19fszzt9e2z4wpu87r09zy58</td>
+<td></td>
 </tr>
 <tr>
 <td>access_token</td>
 <td>Should be sent through url</td>
+<td>Required</td>
 </tr>
 <tr>
-<td>id</td>
-<td>Ticket id</td>
-</tr>
-<tr>
-<td>status</td>
-<td>status to be set for the ticket</td>
+<td></td>
+<td>Example Access Token: ssdfsdf7s87878sd878d87fd</td>
+<td></td>
 </tr>
 </tbody></table>
+
+<p>With the <strong><em>Access token</em></strong> provided in the url, the particular provider will be identified, and Categories of that particular
+provider will be sent.</p>
 
 <h2 id="create-ticket">Create Ticket</h2>
 <pre class="highlight shell"><code>    <span class="s2">"http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/create_ticket"</span>
@@ -543,58 +768,303 @@ provider will be sent.</p>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"ticket_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">46</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ticket Created Successfully!!"</span><span class="w">
-     </span><span class="p">}</span><span class="w">
-</span></code></pre>
+<pre class="highlight plaintext"><code>  Success Response:
+
+  {
+    "status": "Success",
+    "ticket_id": 46,
+    "message": "Ticket Created Successfully!!"
+  }
+</code></pre>
+<pre class="highlight plaintext"><code>  Error Response:
+
+  {
+    "status": "false",
+    "message": "Invalid credentials!!"
+  }
+</code></pre>
 
 <p>This endpoint will create a ticket for a particular provider.</p>
 
-<h3 id="http-request">HTTP Request</h3>
+<h3 id="resource-url">Resource URL</h3>
 
 <p><code class="prettyprint">GET http://connecticket.railsfactory.com/api/&lt;:access_token_got_from_authentication&gt;/provider_categories</code></p>
 
-<p>With the <strong><em>Access token</em></strong> provided in the url, the particular provider will be identified, and Categories of that particular
-provider will be sent.</p>
+<h3 id="verb">Verb:</h3>
+
+<p>GET</p>
+
+<table><thead>
+<tr>
+<th>Resource</th>
+<th>Information</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Response formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>Requires authentication?</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Description</th>
+<th>Required/Optional</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>api_key</td>
-<td>Should be sent in header</td>
+<td>api_key got while registering the application with connect4health</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example API Key: 8eb68e28cda407158cf9a8064bdd5351</td>
+<td></td>
 </tr>
 <tr>
 <td>api_secret</td>
-<td>Should be sent in header</td>
+<td>api_secret got while registering the application with connect4health</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example API Secret: b19fszzt9e2z4wpu87r09zy58</td>
+<td></td>
 </tr>
 <tr>
 <td>access_token</td>
 <td>Should be sent through url</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example Access Token: ssdfsdf7s87878sd878d87fd</td>
+<td></td>
+</tr>
+<tr>
+<td>title</td>
+<td>title of ticket</td>
+<td>Optional</td>
+</tr>
+<tr>
+<td></td>
+<td>Example Title: new test ticket</td>
+<td></td>
+</tr>
+<tr>
+<td>resident_id</td>
+<td>id of the particular subscriber whom the ticket is created</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example Resident ID: 34333</td>
+<td></td>
+</tr>
+<tr>
+<td>sms</td>
+<td>sms notification for the recipient</td>
+<td>optional</td>
+</tr>
+<tr>
+<td></td>
+<td>Example sms: true</td>
+<td></td>
+</tr>
+<tr>
+<td>email</td>
+<td>email notification for the recipient</td>
+<td>optional</td>
+</tr>
+<tr>
+<td></td>
+<td>Example email: true</td>
+<td></td>
+</tr>
+<tr>
+<td>state</td>
+<td></td>
+<td>optional</td>
+</tr>
+<tr>
+<td></td>
+<td>Example state: true</td>
+<td></td>
+</tr>
+<tr>
+<td>urgency_status</td>
+<td>urgency status of the ticket</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example Urgency Status: No Issue / Exception</td>
+<td></td>
+</tr>
+<tr>
+<td>ticket_status</td>
+<td>status of the ticket</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example Ticket Status: New</td>
+<td></td>
 </tr>
 </tbody></table>
 
-<p>Parameters to be sent: &ldquo;title&rdquo;, &ldquo;resident_id&rdquo;, &ldquo;sms&rdquo;, &ldquo;email&rdquo;, &ldquo;state&rdquo;, &ldquo;urgency_status&rdquo;,&ldquo;ticket_status&rdquo;.
-Along with these parameters: Category status also should be set. Category details of a particular provider cant be fetched
-from &ldquo;Provider Categories&rdquo; end point. Category status should be sent like below along with the parameters above.
-Parameter | Status
-&mdash;&mdash;&mdash; | &mdash;&mdash;&mdash;&ndash;
-category_19 | &ldquo;Issue&rdquo;
-category_22| &ldquo;No Issue&rdquo;
-category_33| &ldquo;Potential Issue&rdquo;</p>
-
-<p>Once the above parameters sent to the above end point, ticket will be created and a success status will be sent.</p>
-
-          <h1 id="errors">Errors</h1>
+<p>Along with the above parameters: Category status also should be set. Category details of a particular provider can&rsquo;t be fetched
+from &ldquo;Provider Categories&rdquo; end point. Category status should be sent like below along with the parameters above.</p>
 
 <table><thead>
 <tr>
-<th>Error Code</th>
+<th>Parameter</th>
+<th>Status</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>category_19</td>
+<td>&ldquo;Issue&rdquo;</td>
+</tr>
+<tr>
+<td>category_22</td>
+<td>&ldquo;No Issue&rdquo;</td>
+</tr>
+<tr>
+<td>category_33</td>
+<td>&ldquo;Potential Issue&rdquo;</td>
+</tr>
+</tbody></table>
+
+<p>Once the parameters are sent to the end point, ticket will be created and a success status will be sent.</p>
+
+<h2 id="ticket-status-update">Ticket status update</h2>
+<pre class="highlight shell"><code>    <span class="s2">"http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/update_status?id=202&amp;status=Reopen"</span>
+  In Headers: api_key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
+              api_secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>Success Response:
+  {
+    "status": "Success",
+    "message": "Status Updated Successfully!!"
+  }
+</code></pre>
+<pre class="highlight plaintext"><code>Error Response:
+
+  Response 1:
+    {
+      "status": false,
+      "message": "Invalid Credentials",
+    }
+  Response 2:
+    {
+      "status": false,
+      "message": "Invalid Ticket ID",
+    }
+</code></pre>
+
+<p>This end point updates the status of the ticket changed by the provider. </p>
+
+<h3 id="resource-url">Resource URL</h3>
+
+<p><code class="prettyprint">http://connecticket.railsfactory.com/api/&lt;:access_token_got_from_authentication&gt;/update_status</code></p>
+
+<h3 id="verb">Verb:</h3>
+
+<p>POST</p>
+
+<table><thead>
+<tr>
+<th>Resource</th>
+<th>Information</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Response formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>Requires authentication?</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Required/Optional</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>api_key</td>
+<td>api_key got while registering the application with connect4health</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example API Key: 8eb68e28cda407158cf9a8064bdd5351</td>
+<td></td>
+</tr>
+<tr>
+<td>api_secret</td>
+<td>api_secret got while registering the application with connect4health</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example API Secret: b19fszzt9e2z4wpu87r09zy58</td>
+<td></td>
+</tr>
+<tr>
+<td>access_token</td>
+<td>Should be sent through url</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example Access Token: ssdfsdf7s87878sd878d87fd</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>Unique ID of the ticket</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example ID: 12</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>status to be set for the ticket</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example status: In Progress</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>With the respective Ticket ID, the status of the ticket updates.</p>
+
+          <h1 id="http-error-codes">HTTP Error Codes</h1>
+
+<table><thead>
+<tr>
+<th>Code</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
