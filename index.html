@@ -253,7 +253,7 @@ This access token should be used in further requests along with api_key and api_
 <pre class="highlight plaintext"><code>  Success response:
 
     {
-        "status": "Success",
+        "status": true,
         "ticket": [
             {
                 "start_date": null,
@@ -368,6 +368,7 @@ provider will be sent.</p>
 <pre class="highlight plaintext"><code>Success response:
 
     {
+        "status": true,
         "ticket_with_details": {
             "ticket_attachments": [],
             "ticket": {
@@ -515,7 +516,7 @@ provider will be sent.</p>
 </blockquote>
 <pre class="highlight plaintext"><code>Success Response:
     {
-        "status": "Success",
+        "status": true,
         "residents": [
             {
                 "fax_number": null,
@@ -674,7 +675,7 @@ provider will be sent in response.</p>
 </blockquote>
 <pre class="highlight plaintext"><code>Success Response"
 {
-    "status": "Success",
+    "status": true,
     "categories": [{"id": 3, "name": "Clinical Edit"},
                   {"id": 3, "name": "Emergency"},
                   {"id": 3, "name": "Activity Level"},
@@ -771,7 +772,7 @@ provider will be sent.</p>
 <pre class="highlight plaintext"><code>  Success Response:
 
   {
-    "status": "Success",
+    "status": true,
     "ticket_id": 46,
     "message": "Ticket Created Successfully!!"
   }
@@ -779,7 +780,7 @@ provider will be sent.</p>
 <pre class="highlight plaintext"><code>  Error Response:
 
   {
-    "status": "false",
+    "status": false,
     "message": "Invalid credentials!!"
   }
 </code></pre>
@@ -788,7 +789,7 @@ provider will be sent.</p>
 
 <h3 id="resource-url">Resource URL</h3>
 
-<p><code class="prettyprint">GET http://connecticket.railsfactory.com/api/&lt;:access_token_got_from_authentication&gt;/provider_categories</code></p>
+<p><code class="prettyprint">GET http://connecticket.railsfactory.com/api/&lt;:access_token_got_from_authentication&gt;/create_ticket</code></p>
 
 <h3 id="verb">Verb:</h3>
 
@@ -955,7 +956,7 @@ from &ldquo;Provider Categories&rdquo; end point. Category status should be sent
 </blockquote>
 <pre class="highlight plaintext"><code>Success Response:
   {
-    "status": "Success",
+    "status": true,
     "message": "Status Updated Successfully!!"
   }
 </code></pre>
