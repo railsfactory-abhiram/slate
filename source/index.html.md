@@ -119,7 +119,7 @@ This endpoint retrieves all the tickets created by the provider.
   Success response:
 
     {
-        "status": "Success",
+        "status": true,
         "ticket": [
             {
                 "start_date": null,
@@ -195,6 +195,7 @@ curl "http://connecticket.railsfactory.org/api/356kdpiamhkz7a43nu0e2ldr9/ticket_
 Success response:
 
     {
+        "status": true,
         "ticket_with_details": {
             "ticket_attachments": [],
             "ticket": {
@@ -295,7 +296,7 @@ Access Token helps in identifying the respective provider. The Ticket ID helps i
 ```
 Success Response:
     {
-        "status": "Success",
+        "status": true,
         "residents": [
             {
                 "fax_number": null,
@@ -414,7 +415,7 @@ provider will be sent in response.
 ```
 Success Response"
 {
-    "status": "Success",
+    "status": true,
     "categories": [{"id": 3, "name": "Clinical Edit"},
                   {"id": 3, "name": "Emergency"},
                   {"id": 3, "name": "Activity Level"},
@@ -473,7 +474,7 @@ provider will be sent.
   Success Response:
   
   {
-    "status": "Success",
+    "status": true,
     "ticket_id": 46,
     "message": "Ticket Created Successfully!!"
   }
@@ -483,7 +484,7 @@ provider will be sent.
   Error Response:
   
   {
-    "status": "false",
+    "status": false,
     "message": "Invalid credentials!!"
   }
 ```
@@ -492,7 +493,7 @@ This endpoint will create a ticket for a particular provider.
 
 ### Resource URL
 
-`GET http://connecticket.railsfactory.com/api/<:access_token_got_from_authentication>/provider_categories`
+`GET http://connecticket.railsfactory.com/api/<:access_token_got_from_authentication>/create_ticket`
 
 ### Verb:
 GET
@@ -549,7 +550,7 @@ Once the parameters are sent to the end point, ticket will be created and a succ
 ```
 Success Response:
   {
-    "status": "Success",
+    "status": true,
     "message": "Status Updated Successfully!!"
   }
 ```
