@@ -473,20 +473,32 @@ provider will be sent.
 ```
   Success Response:
   
+  Response 1:
   {
     "status": true,
     "ticket_id": 46,
     "message": "Ticket Created Successfully!!"
   }
-```
 
-```
+  
   Error Response:
   
   {
     "status": false,
-    "message": "Invalid credentials!!"
+    "message": "Invalid ticket id!!"
   }
+
+  
+  {
+    "status": false,
+    "message": "title/regarding required"
+  }
+
+  {
+    "status": false,
+    "message": "Message cannot be created <:respective error message will be shown here>"
+  }
+
 ```
 
 This endpoint will create a ticket for a particular provider.
@@ -525,9 +537,9 @@ urgency_status | urgency status of the ticket  | Required
                | Example Urgency Status: No Issue / Exception
 ticket_status  | status of the ticket   | Required
                | Example Ticket Status: New
-
-Along with the above parameters: Category status also should be set. Category details of a particular provider can't be fetched
-from "Provider Categories" end point. Category status should be sent like below along with the parameters above.
+attachment[:attachment_id]  | Add the attachment like attachment_1 = #<File:/tmp/RackMultipart20160223-10206-8nvy6z-0>, attachment_2 = #<File:/tmp/RackMultipart20160223-10206-8nvy6z-0>...etc.
+Along with the above parameters: Category status also should be set. Category details of a particular provider can be fetched
+from "Provider Categories" end point. Category status should be sent like below along with the category parameters(parameters we got from provider categories end point).
 
 Parameter | Status
 --------- | -----------
@@ -553,8 +565,7 @@ Success Response:
     "status": true,
     "message": "Status Updated Successfully!!"
   }
-```
-```
+
 Error Response:
 
   Response 1:
@@ -562,10 +573,11 @@ Error Response:
       "status": false,
       "message": "Invalid Credentials",
     }
+
   Response 2:
     {
       "status": false,
-      "message": "Invalid Ticket ID",
+      "message": "Invalid Ticket ID/ <:respective error message will appear here>",
     }
 ```
 This end point updates the status of the ticket changed by the provider. 
