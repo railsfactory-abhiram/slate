@@ -771,18 +771,32 @@ provider will be sent.</p>
 </blockquote>
 <pre class="highlight plaintext"><code>  Success Response:
 
+  Response 1:
   {
     "status": true,
     "ticket_id": 46,
     "message": "Ticket Created Successfully!!"
   }
-</code></pre>
-<pre class="highlight plaintext"><code>  Error Response:
+
+
+  Error Response:
 
   {
     "status": false,
-    "message": "Invalid credentials!!"
+    "message": "Invalid ticket id!!"
   }
+
+
+  {
+    "status": false,
+    "message": "title/regarding required"
+  }
+
+  {
+    "status": false,
+    "message": "Message cannot be created &lt;:respective error message will be shown here&gt;"
+  }
+
 </code></pre>
 
 <p>This endpoint will create a ticket for a particular provider.</p>
@@ -918,10 +932,15 @@ provider will be sent.</p>
 <td>Example Ticket Status: New</td>
 <td></td>
 </tr>
+<tr>
+<td>attachment[:attachment_id]</td>
+<td>Add the attachment like attachment_1 = #<a href="File:/tmp/RackMultipart20160223-10206-8nvy6z-0">File:/tmp/RackMultipart20160223-10206-8nvy6z-0</a>, attachment_2 = #<a href="File:/tmp/RackMultipart20160223-10206-8nvy6z-0">File:/tmp/RackMultipart20160223-10206-8nvy6z-0</a>&hellip;etc.</td>
+<td></td>
+</tr>
 </tbody></table>
 
-<p>Along with the above parameters: Category status also should be set. Category details of a particular provider can&rsquo;t be fetched
-from &ldquo;Provider Categories&rdquo; end point. Category status should be sent like below along with the parameters above.</p>
+<p>Along with the above parameters: Category status also should be set. Category details of a particular provider can be fetched
+from &ldquo;Provider Categories&rdquo; end point. Category status should be sent like below along with the category parameters(parameters we got from provider categories end point).</p>
 
 <table><thead>
 <tr>
@@ -959,18 +978,19 @@ from &ldquo;Provider Categories&rdquo; end point. Category status should be sent
     "status": true,
     "message": "Status Updated Successfully!!"
   }
-</code></pre>
-<pre class="highlight plaintext"><code>Error Response:
+
+Error Response:
 
   Response 1:
     {
       "status": false,
       "message": "Invalid Credentials",
     }
+
   Response 2:
     {
       "status": false,
-      "message": "Invalid Ticket ID",
+      "message": "Invalid Ticket ID/ &lt;:respective error message will appear here&gt;",
     }
 </code></pre>
 
