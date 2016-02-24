@@ -525,16 +525,26 @@ urgency_status | urgency status of the ticket  | Required
                | Example Urgency Status: No Issue / Exception
 ticket_status  | status of the ticket   | Required
                | Example Ticket Status: New
+general_comments | general comments of the ticket | Optional
+                 | Example general comments: Hi welcome!
 
-Along with the above parameters: Category status also should be set. Category details of a particular provider can't be fetched
+Along with the above parameters: Category status and Category Comments also should be sent. Category details of a particular provider can't be fetched
 from "Provider Categories" end point. Category status should be sent like below along with the parameters above.
 
-Parameter | Status
+Parameter | Description
 --------- | -----------
-category_19 | "Issue"
-category_22| "No Issue"
-category_33| "Potential Issue"
-
+category_[:id] | Status of the category
+            | Example Category ID : category_12 => "Issue"
+category_comments_[:id]  | Comment for this category
+                      | Example Category Comments ID  : category_comments_12 => "There are few comments."
+category_[:id] | Status of the category
+            | Example Category ID : category_13 => " No Issue"
+category_comments_[:id]  | Comment for this category
+                      | Example Category Comments ID  : category_comments_13 => "There are less comments."
+category_[:id] | Status of the category
+            | Example Category ID : category_16 => "Potential Issue"
+category_comments_[:id]  | Comment for this category
+                      | Example Category Comments ID  : category_comments_16 => "There are no comments."
 Once the parameters are sent to the end point, ticket will be created and a success status will be sent.
 
 ## Ticket status update
@@ -599,3 +609,128 @@ status | status to be set for the ticket | Required
 
 
 With the respective Ticket ID, the status of the ticket updates.
+
+## Create General Comment
+
+```shell
+    "http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/update_status?id=202&status=Reopen"
+  In Headers: api_key: "8eb68e28cda407158cf9a8064bdd5351"
+              api_secret: "b19fszzt9e2z4wpu87r09zy58"
+```
+
+> The above command returns JSON structured like this:
+
+```
+Success Response:
+  {
+    "status": true,
+    "message": "Comment created Successfully!!"
+  }
+```
+```
+Error Response:
+
+  Response 1:
+    {
+      "status": false,
+      "message": "Invalid Credentials",
+    }
+  Response 2:
+    {
+      "status": false,
+      "message": "Invalid Ticket ID",
+    }
+```
+This end point is used to create comment for ticket. 
+
+### Resource URL
+
+`http://connecticket.railsfactory.com/api/<:access_token_got_from_authentication>/create_comment`
+
+### Verb:
+POST
+
+Resource | Information
+--------- | -----------
+Response formats        | JSON
+Requires authentication?| Yes
+
+
+Parameter | Description | Required/Optional
+--------- | ----------- | -----------------
+api_key   | api_key got while registering the application with connect4health    |  Required
+          | Example API Key: 8eb68e28cda407158cf9a8064bdd5351
+api_secret| api_secret got while registering the application with connect4health |  Required
+          | Example API Secret: b19fszzt9e2z4wpu87r09zy58
+access_token| Should be sent through url  |  Required
+          | Example Access Token: ssdfsdf7s87878sd878d87fd
+ticket_id | Unique ID of the ticket  |   Required
+   | Example Ticket ID: 12
+comment | comment given by provider | Required
+       | Example comment: Hi! Welcome!
+
+Comment for this particular ticket is created by the above parameters.
+
+## Create Category Comment
+
+```shell
+    "http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/update_status?id=202&status=Reopen"
+  In Headers: api_key: "8eb68e28cda407158cf9a8064bdd5351"
+              api_secret: "b19fszzt9e2z4wpu87r09zy58"
+```
+
+> The above command returns JSON structured like this:
+
+```
+Success Response:
+  {
+    "status": true,
+    "message": "Comment created Successfully!!"
+  }
+```
+```
+Error Response:
+
+  Response 1:
+    {
+      "status": false,
+      "message": "Invalid Credentials",
+    }
+  Response 2:
+    {
+      "status": false,
+      "message": "Invalid Ticket ID",
+    }
+```
+This end point is used to create comment for a particular category. 
+
+### Resource URL
+
+`http://connecticket.railsfactory.com/api/<:access_token_got_from_authentication>/create_comment`
+
+### Verb:
+POST
+
+Resource | Information
+--------- | -----------
+Response formats        | JSON
+Requires authentication?| Yes
+
+
+Parameter | Description | Required/Optional
+--------- | ----------- | -----------------
+api_key   | api_key got while registering the application with connect4health    |  Required
+          | Example API Key: 8eb68e28cda407158cf9a8064bdd5351
+api_secret| api_secret got while registering the application with connect4health |  Required
+          | Example API Secret: b19fszzt9e2z4wpu87r09zy58
+access_token| Should be sent through url  |  Required
+          | Example Access Token: ssdfsdf7s87878sd878d87fd
+ticket_id | Unique ID of the ticket  |   Required
+   | Example Ticket ID: 12
+comment | comment given by provider | Required
+       | Example comment: Hi! Welcome!
+category_id | Unique ID of the category | Required
+            | Example category ID: 2
+
+Comment for this particular category is created by the above parameters.
+
