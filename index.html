@@ -777,197 +777,89 @@ provider will be sent.</p>
     "ticket_id": 46,
     "message": "Ticket Created Successfully!!"
   }
-
-
-  Error Response:
-
-  {
-    "status": false,
-    "message": "Invalid ticket id!!"
-  }
-
-
-  {
-    "status": false,
-    "message": "title/regarding required"
-  }
-
-  {
-    "status": false,
-    "message": "Message cannot be created &lt;:respective error message will be shown here&gt;"
-  }
-
 </code></pre>
 
-<p>This endpoint will create a ticket for a particular provider.</p>
+<p>Error Response:</p>
 
-<h3 id="resource-url">Resource URL</h3>
+<p>{
+    &ldquo;status&rdquo;: false,
+    &ldquo;message&rdquo;: &ldquo;Invalid ticket id!!&rdquo;
+  }</p>
 
-<p><code class="prettyprint">GET http://connecticket.railsfactory.com/api/&lt;:access_token_got_from_authentication&gt;/create_ticket</code></p>
+<p>{
+    &ldquo;status&rdquo;: false,
+    &ldquo;message&rdquo;: &ldquo;title/regarding required&rdquo;
+  }</p>
 
-<h3 id="verb">Verb:</h3>
+<p>{
+    &ldquo;status&rdquo;: false,
+    &ldquo;message&rdquo;: &ldquo;Message cannot be created &lt;:respective error message will be shown here&gt;&rdquo;
+  }</p>
+<pre class="highlight plaintext"><code>
+This endpoint will create a ticket for a particular provider.
 
-<p>GET</p>
+### Resource URL
 
-<table><thead>
-<tr>
-<th>Resource</th>
-<th>Information</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Response formats</td>
-<td>JSON</td>
-</tr>
-<tr>
-<td>Requires authentication?</td>
-<td>Yes</td>
-</tr>
-</tbody></table>
+`GET http://connecticket.railsfactory.com/api/&lt;:access_token_got_from_authentication&gt;/create_ticket`
 
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-<th>Required/Optional</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>api_key</td>
-<td>api_key got while registering the application with connect4health</td>
-<td>Required</td>
-</tr>
-<tr>
-<td></td>
-<td>Example API Key: 8eb68e28cda407158cf9a8064bdd5351</td>
-<td></td>
-</tr>
-<tr>
-<td>api_secret</td>
-<td>api_secret got while registering the application with connect4health</td>
-<td>Required</td>
-</tr>
-<tr>
-<td></td>
-<td>Example API Secret: b19fszzt9e2z4wpu87r09zy58</td>
-<td></td>
-</tr>
-<tr>
-<td>access_token</td>
-<td>Should be sent through url</td>
-<td>Required</td>
-</tr>
-<tr>
-<td></td>
-<td>Example Access Token: ssdfsdf7s87878sd878d87fd</td>
-<td></td>
-</tr>
-<tr>
-<td>title</td>
-<td>title of ticket</td>
-<td>Optional</td>
-</tr>
-<tr>
-<td></td>
-<td>Example Title: new test ticket</td>
-<td></td>
-</tr>
-<tr>
-<td>resident_id</td>
-<td>id of the particular subscriber whom the ticket is created</td>
-<td>Required</td>
-</tr>
-<tr>
-<td></td>
-<td>Example Resident ID: 34333</td>
-<td></td>
-</tr>
-<tr>
-<td>sms</td>
-<td>sms notification for the recipient</td>
-<td>optional</td>
-</tr>
-<tr>
-<td></td>
-<td>Example sms: true</td>
-<td></td>
-</tr>
-<tr>
-<td>email</td>
-<td>email notification for the recipient</td>
-<td>optional</td>
-</tr>
-<tr>
-<td></td>
-<td>Example email: true</td>
-<td></td>
-</tr>
-<tr>
-<td>state</td>
-<td></td>
-<td>optional</td>
-</tr>
-<tr>
-<td></td>
-<td>Example state: true</td>
-<td></td>
-</tr>
-<tr>
-<td>urgency_status</td>
-<td>urgency status of the ticket</td>
-<td>Required</td>
-</tr>
-<tr>
-<td></td>
-<td>Example Urgency Status: No Issue / Exception</td>
-<td></td>
-</tr>
-<tr>
-<td>ticket_status</td>
-<td>status of the ticket</td>
-<td>Required</td>
-</tr>
-<tr>
-<td></td>
-<td>Example Ticket Status: New</td>
-<td></td>
-</tr>
-<tr>
-<td>attachment[:attachment_id]</td>
-<td>Add the attachment like attachment_1 = #<a href="File:/tmp/RackMultipart20160223-10206-8nvy6z-0">File:/tmp/RackMultipart20160223-10206-8nvy6z-0</a>, attachment_2 = #<a href="File:/tmp/RackMultipart20160223-10206-8nvy6z-0">File:/tmp/RackMultipart20160223-10206-8nvy6z-0</a>&hellip;etc.</td>
-<td></td>
-</tr>
-</tbody></table>
+### Verb:
+GET
 
-<p>Along with the above parameters: Category status also should be set. Category details of a particular provider can be fetched
-from &ldquo;Provider Categories&rdquo; end point. Category status should be sent like below along with the category parameters(parameters we got from provider categories end point).</p>
+Resource | Information
+--------- | -----------
+Response formats        | JSON
+Requires authentication?| Yes
 
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Status</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>category_19</td>
-<td>&ldquo;Issue&rdquo;</td>
-</tr>
-<tr>
-<td>category_22</td>
-<td>&ldquo;No Issue&rdquo;</td>
-</tr>
-<tr>
-<td>category_33</td>
-<td>&ldquo;Potential Issue&rdquo;</td>
-</tr>
-</tbody></table>
+Parameter | Description | Required/Optional
+--------- | ----------- | -----------------
+api_key   | api_key got while registering the application with connect4health    |  Required
+          | Example API Key: 8eb68e28cda407158cf9a8064bdd5351
+api_secret| api_secret got while registering the application with connect4health |  Required
+          | Example API Secret: b19fszzt9e2z4wpu87r09zy58
+access_token| Should be sent through url  |  Required
+          | Example Access Token: ssdfsdf7s87878sd878d87fd
+title     | title of ticket   | Optional
+          | Example Title: new test ticket
+resident_id | id of the particular subscriber whom the ticket is created | Required
+            | Example Resident ID: 34333
+sms   | sms notification for the recipient  | optional
+      | Example sms: true
+email | email notification for the recipient  | optional
+      | Example email: true
+state |   | optional
+      | Example state: true
+urgency_status | urgency status of the ticket  | Required
+               | Example Urgency Status: No Issue / Exception
+ticket_status  | status of the ticket   | Required
+               | Example Ticket Status: New
+general_comments | general comments of the ticket | Optional
+                 | Example general comments: Hi welcome!
+attachment[:attachment_id]  | Add the attachment like attachment_1 = #&lt;File:/tmp/RackMultipart20160223-10206-8nvy6z-0&gt;, attachment_2 = #&lt;File:/tmp/RackMultipart20160223-10206-8nvy6z-0&gt;...etc.
+Along with the above parameters: Category status also should be set. Category details of a particular provider can be fetched
+from "Provider Categories" end point. Category status should be sent like below along with the category parameters(parameters we got from provider categories end point).
 
-<p>Once the parameters are sent to the end point, ticket will be created and a success status will be sent.</p>
+Parameter | Description
+--------- | -----------
+category_[:id] | Status of the category
+            | Example Category ID : category_12 =&gt; "Issue"
+category_comments_[:id]  | Comment for this category
+                      | Example Category Comments ID  : category_comments_12 =&gt; "There are few comments."
+category_[:id] | Status of the category
+            | Example Category ID : category_13 =&gt; " No Issue"
+category_comments_[:id]  | Comment for this category
+                      | Example Category Comments ID  : category_comments_13 =&gt; "There are less comments."
+category_[:id] | Status of the category
+            | Example Category ID : category_16 =&gt; "Potential Issue"
+category_comments_[:id]  | Comment for this category
+                      | Example Category Comments ID  : category_comments_16 =&gt; "There are no comments."
+Once the parameters are sent to the end point, ticket will be created and a success status will be sent.
 
-<h2 id="ticket-status-update">Ticket status update</h2>
-<pre class="highlight shell"><code>    <span class="s2">"http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/update_status?id=202&amp;status=Reopen"</span>
-  In Headers: api_key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
-              api_secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
+## Ticket status update
+
+```shell
+    "http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/update_status?id=202&amp;status=Reopen"
+  In Headers: api_key: "8eb68e28cda407158cf9a8064bdd5351"
+              api_secret: "b19fszzt9e2z4wpu87r09zy58"
 </code></pre>
 
 <blockquote>
@@ -1080,6 +972,248 @@ Error Response:
 </tbody></table>
 
 <p>With the respective Ticket ID, the status of the ticket updates.</p>
+
+<h2 id="create-general-comment">Create General Comment</h2>
+<pre class="highlight shell"><code>    <span class="s2">"http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/update_status?id=202&amp;status=Reopen"</span>
+  In Headers: api_key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
+              api_secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>Success Response:
+  {
+    "status": true,
+    "message": "Comment created Successfully!!"
+  }
+</code></pre>
+<pre class="highlight plaintext"><code>Error Response:
+
+  Response 1:
+    {
+      "status": false,
+      "message": "Invalid Credentials",
+    }
+  Response 2:
+    {
+      "status": false,
+      "message": "Invalid Ticket ID",
+    }
+</code></pre>
+
+<p>This end point is used to create comment for ticket. </p>
+
+<h3 id="resource-url">Resource URL</h3>
+
+<p><code class="prettyprint">http://connecticket.railsfactory.com/api/&lt;:access_token_got_from_authentication&gt;/create_comment</code></p>
+
+<h3 id="verb">Verb:</h3>
+
+<p>POST</p>
+
+<table><thead>
+<tr>
+<th>Resource</th>
+<th>Information</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Response formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>Requires authentication?</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Required/Optional</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>api_key</td>
+<td>api_key got while registering the application with connect4health</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example API Key: 8eb68e28cda407158cf9a8064bdd5351</td>
+<td></td>
+</tr>
+<tr>
+<td>api_secret</td>
+<td>api_secret got while registering the application with connect4health</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example API Secret: b19fszzt9e2z4wpu87r09zy58</td>
+<td></td>
+</tr>
+<tr>
+<td>access_token</td>
+<td>Should be sent through url</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example Access Token: ssdfsdf7s87878sd878d87fd</td>
+<td></td>
+</tr>
+<tr>
+<td>ticket_id</td>
+<td>Unique ID of the ticket</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example Ticket ID: 12</td>
+<td></td>
+</tr>
+<tr>
+<td>comment</td>
+<td>comment given by provider</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example comment: Hi! Welcome!</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>Comment for this particular ticket is created by the above parameters.</p>
+
+<h2 id="create-category-comment">Create Category Comment</h2>
+<pre class="highlight shell"><code>    <span class="s2">"http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/update_status?id=202&amp;status=Reopen"</span>
+  In Headers: api_key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
+              api_secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>Success Response:
+  {
+    "status": true,
+    "message": "Comment created Successfully!!"
+  }
+</code></pre>
+<pre class="highlight plaintext"><code>Error Response:
+
+  Response 1:
+    {
+      "status": false,
+      "message": "Invalid Credentials",
+    }
+  Response 2:
+    {
+      "status": false,
+      "message": "Invalid Ticket ID",
+    }
+</code></pre>
+
+<p>This end point is used to create comment for a particular category. </p>
+
+<h3 id="resource-url">Resource URL</h3>
+
+<p><code class="prettyprint">http://connecticket.railsfactory.com/api/&lt;:access_token_got_from_authentication&gt;/create_comment</code></p>
+
+<h3 id="verb">Verb:</h3>
+
+<p>POST</p>
+
+<table><thead>
+<tr>
+<th>Resource</th>
+<th>Information</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Response formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>Requires authentication?</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Required/Optional</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>api_key</td>
+<td>api_key got while registering the application with connect4health</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example API Key: 8eb68e28cda407158cf9a8064bdd5351</td>
+<td></td>
+</tr>
+<tr>
+<td>api_secret</td>
+<td>api_secret got while registering the application with connect4health</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example API Secret: b19fszzt9e2z4wpu87r09zy58</td>
+<td></td>
+</tr>
+<tr>
+<td>access_token</td>
+<td>Should be sent through url</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example Access Token: ssdfsdf7s87878sd878d87fd</td>
+<td></td>
+</tr>
+<tr>
+<td>ticket_id</td>
+<td>Unique ID of the ticket</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example Ticket ID: 12</td>
+<td></td>
+</tr>
+<tr>
+<td>comment</td>
+<td>comment given by provider</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example comment: Hi! Welcome!</td>
+<td></td>
+</tr>
+<tr>
+<td>category_id</td>
+<td>Unique ID of the category</td>
+<td>Required</td>
+</tr>
+<tr>
+<td></td>
+<td>Example category ID: 2</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>Comment for this particular category is created by the above parameters.</p>
 
           <h1 id="http-error-codes">HTTP Error Codes</h1>
 
