@@ -45,8 +45,8 @@ search: true
 ```shell
 # With shell, you can just pass the correct header with each request
  "http://connecticket.railsfactory.com/api/authorize"
-  In Headers: api_key: "8eb68e28cda407158cf9a8064bdd5351"
-              api_secret: "b19fszzt9e2z4wpu87r09zy58"
+  In Headers: api-key: "8eb68e28cda407158cf9a8064bdd5351"
+              api-secret: "b19fszzt9e2z4wpu87r09zy58"
 ```
 
 > The above command returns JSON structured like this:
@@ -73,7 +73,7 @@ Error Response:
 
 
 ### Authentication on all endpoints
-We require applications to authenticate all of their requests with Access Token. This visibility allows us to prevent abusive behavior, and it also helps us to further understand how categories of applications are using the API. We apply this understanding to better meet the needs of developers as we continue to evolve the platform. Register the Application with Connect4health and get your API_KEY and API_SECRET. With the api_key and api_secret send a request like below,
+We require applications to authenticate all of their requests with Access Token. This visibility allows us to prevent abusive behavior, and it also helps us to further understand how categories of applications are using the API. We apply this understanding to better meet the needs of developers as we continue to evolve the platform. Register the Application with Connect4health and get your API_KEY and API_SECRET. With the api-key and api-secret send a request like below,
 
 ### Resource URL
 
@@ -92,13 +92,13 @@ Requires authentication?| Yes
 
 Parameter | Description | Required/Optional
 --------- | ----------- |------------------
-api_key   | api_key got while registering the application with Connect4health | Required
+api-key   | api-key got while registering the application with Connect4health | Required
           | Example API Key: 8eb68e28cda407158cf9a8064bdd5351
-api_secret| api_secret got while registering the application with Connect4health | Required
+api-secret| api-secret got while registering the application with Connect4health | Required
           | Example API Secret: b19fszzt9e2z4wpu87r09zy58
 
 In Response, Access_token will be provided, with success message, this means that the app and user has been authorized successfully.
-This access token should be used in further requests along with api_key and api_secret.
+This access token should be used in further requests along with api-key and api-secret.
 
 
 # Tickets
@@ -109,8 +109,8 @@ This endpoint retrieves all the tickets created by the provider.
 
 ```shell
     "http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/tickets"
-  In Headers: api_key: "8eb68e28cda407158cf9a8064bdd5351"
-              api_secret: "b19fszzt9e2z4wpu87r09zy58"
+  In Headers: api-key: "8eb68e28cda407158cf9a8064bdd5351"
+              api-secret: "b19fszzt9e2z4wpu87r09zy58"
 ```
 
 > The above command returns JSON structured like this:
@@ -171,9 +171,9 @@ Send the below parameters in Headers
 
 Parameter | Description | Required/Optional
 --------- | ----------- | -----------------
-api_key   | api_key got while registering the application with connect4health    |  Required
+api-key   | api-key got while registering the application with connect4health    |  Required
           | Example API Key: 8eb68e28cda407158cf9a8064bdd5351
-api_secret| api_secret got while registering the application with connect4health |  Required
+api-secret| api-secret got while registering the application with connect4health |  Required
           | Example API Secret: b19fszzt9e2z4wpu87r09zy58
 access_token| Should be sent through url  |  Required
           | Example Access Token: ssdfsdf7s87878sd878d87fd
@@ -185,8 +185,8 @@ provider will be sent.
 
 ```shell
 curl "http://connecticket.railsfactory.org/api/356kdpiamhkz7a43nu0e2ldr9/ticket_detail?id=201"
- In Headers:  api_key: "8eb68e28cda407158cf9a8064bdd5351"
-              api_secret: "b19fszzt9e2z4wpu87r09zy58"
+ In Headers:  api-key: "8eb68e28cda407158cf9a8064bdd5351"
+              api-secret: "b19fszzt9e2z4wpu87r09zy58"
 ```
 
 > The above command returns JSON structured like this:
@@ -271,9 +271,9 @@ Requires authentication?| Yes
 
 Parameter | Description | Required/Optional
 --------- | ----------- | -----------------
-api_key   | api_key got while registering the application with connect4health    |  Required
+api-key   | api-key got while registering the application with connect4health    |  Required
           | Example API Key: 8eb68e28cda407158cf9a8064bdd5351
-api_secret| api_secret got while registering the application with connect4health |  Required
+api-secret| api-secret got while registering the application with connect4health |  Required
           | Example API Secret: b19fszzt9e2z4wpu87r09zy58
 access_token| Should be sent through url  |  Required
           | Example Access Token: ssdfsdf7s87878sd878d87fd
@@ -287,8 +287,8 @@ Access Token helps in identifying the respective provider. The Ticket ID helps i
 
 ```shell
     "http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/all_residents"
-  In Headers: api_key: "8eb68e28cda407158cf9a8064bdd5351"
-              api_secret: "b19fszzt9e2z4wpu87r09zy58"
+  In Headers: api-key: "8eb68e28cda407158cf9a8064bdd5351"
+              api-secret: "b19fszzt9e2z4wpu87r09zy58"
 ```
 
 > The above command returns JSON structured like this:
@@ -393,9 +393,9 @@ Requires authentication?| Yes
 
 Parameter | Description | Required/Optional
 --------- | ----------- | -----------------
-api_key   | api_key got while registering the application with connect4health    |  Required
+api-key   | api-key got while registering the application with connect4health    |  Required
           | Example API Key: 8eb68e28cda407158cf9a8064bdd5351
-api_secret| api_secret got while registering the application with connect4health |  Required
+api-secret| api-secret got while registering the application with connect4health |  Required
           | Example API Secret: b19fszzt9e2z4wpu87r09zy58
 access_token| Should be sent through url  |  Required
           | Example Access Token: ssdfsdf7s87878sd878d87fd
@@ -406,8 +406,8 @@ provider will be sent in response.
 
 ```shell
     "http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/provider_categories"
-  In Headers: api_key: "8eb68e28cda407158cf9a8064bdd5351"
-              api_secret: "b19fszzt9e2z4wpu87r09zy58"
+  In Headers: api-key: "8eb68e28cda407158cf9a8064bdd5351"
+              api-secret: "b19fszzt9e2z4wpu87r09zy58"
 ```
 
 > The above command returns JSON structured like this:
@@ -450,9 +450,9 @@ Requires authentication?| Yes
 
 Parameter | Description | Required/Optional
 --------- | ----------- | -----------------
-api_key   | api_key got while registering the application with connect4health    |  Required
+api-key   | api-key got while registering the application with connect4health    |  Required
           | Example API Key: 8eb68e28cda407158cf9a8064bdd5351
-api_secret| api_secret got while registering the application with connect4health |  Required
+api-secret| api-secret got while registering the application with connect4health |  Required
           | Example API Secret: b19fszzt9e2z4wpu87r09zy58
 access_token| Should be sent through url  |  Required
           | Example Access Token: ssdfsdf7s87878sd878d87fd
@@ -464,8 +464,8 @@ provider will be sent.
 
 ```shell
     "http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/create_ticket"
-  In Headers: api_key: "8eb68e28cda407158cf9a8064bdd5351"
-              api_secret: "b19fszzt9e2z4wpu87r09zy58"
+  In Headers: api-key: "8eb68e28cda407158cf9a8064bdd5351"
+              api-secret: "b19fszzt9e2z4wpu87r09zy58"
 ```
 
 > The above command returns JSON structured like this:
@@ -519,9 +519,9 @@ Requires authentication?| Yes
 
 Parameter | Description | Required/Optional
 --------- | ----------- | -----------------
-api_key   | api_key got while registering the application with connect4health    |  Required
+api-key   | api-key got while registering the application with connect4health    |  Required
           | Example API Key: 8eb68e28cda407158cf9a8064bdd5351
-api_secret| api_secret got while registering the application with connect4health |  Required
+api-secret| api-secret got while registering the application with connect4health |  Required
           | Example API Secret: b19fszzt9e2z4wpu87r09zy58
 access_token| Should be sent through url  |  Required
           | Example Access Token: ssdfsdf7s87878sd878d87fd
@@ -566,8 +566,8 @@ Once the parameters are sent to the end point, ticket will be created and a succ
 
 ```shell
     "http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/update_status?id=202&status=Reopen"
-  In Headers: api_key: "8eb68e28cda407158cf9a8064bdd5351"
-              api_secret: "b19fszzt9e2z4wpu87r09zy58"
+  In Headers: api-key: "8eb68e28cda407158cf9a8064bdd5351"
+              api-secret: "b19fszzt9e2z4wpu87r09zy58"
 ```
 
 > The above command returns JSON structured like this:
@@ -611,9 +611,9 @@ Requires authentication?| Yes
 
 Parameter | Description | Required/Optional
 --------- | ----------- | -----------------
-api_key   | api_key got while registering the application with connect4health    |  Required
+api-key   | api-key got while registering the application with connect4health    |  Required
           | Example API Key: 8eb68e28cda407158cf9a8064bdd5351
-api_secret| api_secret got while registering the application with connect4health |  Required
+api-secret| api-secret got while registering the application with connect4health |  Required
           | Example API Secret: b19fszzt9e2z4wpu87r09zy58
 access_token| Should be sent through url  |  Required
           | Example Access Token: ssdfsdf7s87878sd878d87fd
@@ -629,8 +629,8 @@ With the respective Ticket ID, the status of the ticket updates.
 
 ```shell
     "http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/update_status?id=202&status=Reopen"
-  In Headers: api_key: "8eb68e28cda407158cf9a8064bdd5351"
-              api_secret: "b19fszzt9e2z4wpu87r09zy58"
+  In Headers: api-key: "8eb68e28cda407158cf9a8064bdd5351"
+              api-secret: "b19fszzt9e2z4wpu87r09zy58"
 ```
 
 > The above command returns JSON structured like this:
@@ -673,9 +673,9 @@ Requires authentication?| Yes
 
 Parameter | Description | Required/Optional
 --------- | ----------- | -----------------
-api_key   | api_key got while registering the application with connect4health    |  Required
+api-key   | api-key got while registering the application with connect4health    |  Required
           | Example API Key: 8eb68e28cda407158cf9a8064bdd5351
-api_secret| api_secret got while registering the application with connect4health |  Required
+api-secret| api-secret got while registering the application with connect4health |  Required
           | Example API Secret: b19fszzt9e2z4wpu87r09zy58
 access_token| Should be sent through url  |  Required
           | Example Access Token: ssdfsdf7s87878sd878d87fd
@@ -690,8 +690,8 @@ Comment for this particular ticket is created by the above parameters.
 
 ```shell
     "http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/update_status?id=202&status=Reopen"
-  In Headers: api_key: "8eb68e28cda407158cf9a8064bdd5351"
-              api_secret: "b19fszzt9e2z4wpu87r09zy58"
+  In Headers: api-key: "8eb68e28cda407158cf9a8064bdd5351"
+              api-secret: "b19fszzt9e2z4wpu87r09zy58"
 ```
 
 > The above command returns JSON structured like this:
@@ -734,9 +734,9 @@ Requires authentication?| Yes
 
 Parameter | Description | Required/Optional
 --------- | ----------- | -----------------
-api_key   | api_key got while registering the application with connect4health    |  Required
+api-key   | api-key got while registering the application with connect4health    |  Required
           | Example API Key: 8eb68e28cda407158cf9a8064bdd5351
-api_secret| api_secret got while registering the application with connect4health |  Required
+api-secret| api-secret got while registering the application with connect4health |  Required
           | Example API Secret: b19fszzt9e2z4wpu87r09zy58
 access_token| Should be sent through url  |  Required
           | Example Access Token: ssdfsdf7s87878sd878d87fd
