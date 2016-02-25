@@ -525,7 +525,7 @@ api_secret| api_secret got while registering the application with connect4health
           | Example API Secret: b19fszzt9e2z4wpu87r09zy58
 access_token| Should be sent through url  |  Required
           | Example Access Token: ssdfsdf7s87878sd878d87fd
-title     | title of ticket   | Optional
+title     | title of ticket   | Required
           | Example Title: new test ticket
 resident_id | id of the particular subscriber whom the ticket is created | Required
             | Example Resident ID: 34333
