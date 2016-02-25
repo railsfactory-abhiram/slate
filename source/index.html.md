@@ -123,7 +123,6 @@ This endpoint retrieves all the tickets created by the provider.
         "ticket": [
             {
                 "start_date": null,
-                "sentsent_to_primary": null,
                 "urgency_status_id": 3,
                 "ticket_type": null,
                 "resident_id": 75474618,
@@ -200,7 +199,6 @@ Success response:
             "ticket_attachments": [],
             "ticket": {
                 "start_date": null,
-                "sentsent_to_primary": null,
                 "urgency_status_id": 3,
                 "ticket_type": null,
                 "resident_id": 75474618,
