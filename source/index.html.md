@@ -479,22 +479,23 @@ provider will be sent.
     "ticket_id": 46,
     "message": "Ticket Created Successfully!!"
   }
-```
 
   
   Error Response:
-  
+
+  Response 1:
   {
     "status": false,
     "message": "Invalid ticket id!!"
   }
 
-  
+  Response 2:
   {
     "status": false,
     "message": "title/regarding required"
   }
 
+  Response 3:
   {
     "status": false,
     "message": "Message cannot be created <:respective error message will be shown here>"
@@ -541,6 +542,7 @@ ticket_status  | status of the ticket   | Required
 general_comments | general comments of the ticket | Optional
                  | Example general comments: Hi welcome!
 attachment[:attachment_id]  | Add the attachment like attachment_1 = #<File:/tmp/RackMultipart20160223-10206-8nvy6z-0>, attachment_2 = #<File:/tmp/RackMultipart20160223-10206-8nvy6z-0>...etc.
+
 Along with the above parameters: Category status also should be set. Category details of a particular provider can be fetched
 from "Provider Categories" end point. Category status should be sent like below along with the category parameters(parameters we got from provider categories end point).
 
