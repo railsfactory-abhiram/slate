@@ -501,7 +501,7 @@ provider will be sent.</p>
 </tr>
 </tbody></table>
 
-<p>Access Token helps in identifying the respective provider. The Ticket ID helps in displaying the respective ticket.  </p>
+<p>Access Token helps in identifying the respective provider. The Ticket ID helps in displaying the respective ticket.</p>
 
 <h2 id="get-all-residents">Get All Residents</h2>
 <pre class="highlight shell"><code>    <span class="s2">"http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/all_residents"</span>
@@ -518,7 +518,6 @@ provider will be sent.</p>
         "residents": [
             {
                 "fax_number": null,
-                "caretracker_id": null,
                 "resident_type_id": null,
                 "provider_id": 72136196,
                 "photo_content_type": "",
@@ -551,7 +550,6 @@ provider will be sent.</p>
             },
             {
                 "fax_number": null,
-                "caretracker_id": null,
                 "resident_type_id": 1058366525,
                 "provider_id": 72136196,
                 "photo_content_type": "",
@@ -655,6 +653,16 @@ provider will be sent.</p>
 <tr>
 <td></td>
 <td>Example Access Token: ssdfsdf7s87878sd878d87fd</td>
+<td></td>
+</tr>
+<tr>
+<td>group_type_id</td>
+<td>Id of the Resident Group, giving this id will return all resident of a particular group</td>
+<td>Optional</td>
+</tr>
+<tr>
+<td></td>
+<td>Example group_type_id = 131131</td>
 <td></td>
 </tr>
 </tbody></table>
