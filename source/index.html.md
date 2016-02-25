@@ -278,7 +278,8 @@ access_token| Should be sent through url  |  Required
 id | Unique ID of the ticket  |   Required
    | Example ID: 12
 
-Access Token helps in identifying the respective provider. The Ticket ID helps in displaying the respective ticket.  
+
+Access Token helps in identifying the respective provider. The Ticket ID helps in displaying the respective ticket.
 
 
 ## Get All Residents
@@ -397,6 +398,8 @@ api-secret| api-secret got while registering the application with connect4health
           | Example API Secret: b19fszzt9e2z4wpu87r09zy58
 access_token| Should be sent through url  |  Required
           | Example Access Token: ssdfsdf7s87878sd878d87fd
+group_type_id  | Id of the Resident Group, giving this id will return all resident of a particular group | Optional
+    | Example group_type_id = 131131
 
 With the ***Access token*** provided in the url, the particular provider will be identified, and Residents of that particular
 provider will be sent in response.
