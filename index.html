@@ -150,8 +150,8 @@
 <h1 id="authentication">Authentication</h1>
 <pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
  <span class="s2">"http://connecticket.railsfactory.com/api/authorize"</span>
-  In Headers: api_key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
-              api_secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
+  In Headers: api-key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
+              api-secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
 </code></pre>
 
 <blockquote>
@@ -175,7 +175,7 @@
 
 <h3 id="authentication-on-all-endpoints">Authentication on all endpoints</h3>
 
-<p>We require applications to authenticate all of their requests with Access Token. This visibility allows us to prevent abusive behavior, and it also helps us to further understand how categories of applications are using the API. We apply this understanding to better meet the needs of developers as we continue to evolve the platform. Register the Application with Connect4health and get your API_KEY and API_SECRET. With the api_key and api_secret send a request like below,</p>
+<p>We require applications to authenticate all of their requests with Access Token. This visibility allows us to prevent abusive behavior, and it also helps us to further understand how categories of applications are using the API. We apply this understanding to better meet the needs of developers as we continue to evolve the platform. Register the Application with Connect4health and get your API_KEY and API_SECRET. With the api-key and api-secret send a request like below,</p>
 
 <h3 id="resource-url">Resource URL</h3>
 
@@ -213,8 +213,8 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>api_key</td>
-<td>api_key got while registering the application with Connect4health</td>
+<td>api-key</td>
+<td>api-key got while registering the application with Connect4health</td>
 <td>Required</td>
 </tr>
 <tr>
@@ -223,8 +223,8 @@
 <td></td>
 </tr>
 <tr>
-<td>api_secret</td>
-<td>api_secret got while registering the application with Connect4health</td>
+<td>api-secret</td>
+<td>api-secret got while registering the application with Connect4health</td>
 <td>Required</td>
 </tr>
 <tr>
@@ -235,7 +235,7 @@
 </tbody></table>
 
 <p>In Response, Access_token will be provided, with success message, this means that the app and user has been authorized successfully.
-This access token should be used in further requests along with api_key and api_secret.</p>
+This access token should be used in further requests along with api-key and api-secret.</p>
 
 <h1 id="tickets">Tickets</h1>
 
@@ -243,8 +243,8 @@ This access token should be used in further requests along with api_key and api_
 
 <p>This endpoint retrieves all the tickets created by the provider.</p>
 <pre class="highlight shell"><code>    <span class="s2">"http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/tickets"</span>
-  In Headers: api_key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
-              api_secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
+  In Headers: api-key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
+              api-secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
 </code></pre>
 
 <blockquote>
@@ -322,8 +322,8 @@ This access token should be used in further requests along with api_key and api_
 </tr>
 </thead><tbody>
 <tr>
-<td>api_key</td>
-<td>api_key got while registering the application with connect4health</td>
+<td>api-key</td>
+<td>api-key got while registering the application with connect4health</td>
 <td>Required</td>
 </tr>
 <tr>
@@ -332,8 +332,8 @@ This access token should be used in further requests along with api_key and api_
 <td></td>
 </tr>
 <tr>
-<td>api_secret</td>
-<td>api_secret got while registering the application with connect4health</td>
+<td>api-secret</td>
+<td>api-secret got while registering the application with connect4health</td>
 <td>Required</td>
 </tr>
 <tr>
@@ -358,8 +358,8 @@ provider will be sent.</p>
 
 <h2 id="getting-a-specific-ticket">Getting a specific Ticket</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"http://connecticket.railsfactory.org/api/356kdpiamhkz7a43nu0e2ldr9/ticket_detail?id=201"</span>
- In Headers:  api_key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
-              api_secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
+ In Headers:  api-key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
+              api-secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
 </code></pre>
 
 <blockquote>
@@ -462,8 +462,8 @@ provider will be sent.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>api_key</td>
-<td>api_key got while registering the application with connect4health</td>
+<td>api-key</td>
+<td>api-key got while registering the application with connect4health</td>
 <td>Required</td>
 </tr>
 <tr>
@@ -472,8 +472,8 @@ provider will be sent.</p>
 <td></td>
 </tr>
 <tr>
-<td>api_secret</td>
-<td>api_secret got while registering the application with connect4health</td>
+<td>api-secret</td>
+<td>api-secret got while registering the application with connect4health</td>
 <td>Required</td>
 </tr>
 <tr>
@@ -507,8 +507,8 @@ provider will be sent.</p>
 
 <h2 id="get-all-residents">Get All Residents</h2>
 <pre class="highlight shell"><code>    <span class="s2">"http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/all_residents"</span>
-  In Headers: api_key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
-              api_secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
+  In Headers: api-key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
+              api-secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
 </code></pre>
 
 <blockquote>
@@ -630,8 +630,8 @@ provider will be sent.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>api_key</td>
-<td>api_key got while registering the application with connect4health</td>
+<td>api-key</td>
+<td>api-key got while registering the application with connect4health</td>
 <td>Required</td>
 </tr>
 <tr>
@@ -640,8 +640,8 @@ provider will be sent.</p>
 <td></td>
 </tr>
 <tr>
-<td>api_secret</td>
-<td>api_secret got while registering the application with connect4health</td>
+<td>api-secret</td>
+<td>api-secret got while registering the application with connect4health</td>
 <td>Required</td>
 </tr>
 <tr>
@@ -666,8 +666,8 @@ provider will be sent in response.</p>
 
 <h2 id="get-categories">Get Categories</h2>
 <pre class="highlight shell"><code>    <span class="s2">"http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/provider_categories"</span>
-  In Headers: api_key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
-              api_secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
+  In Headers: api-key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
+              api-secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
 </code></pre>
 
 <blockquote>
@@ -726,8 +726,8 @@ while creating a ticket.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>api_key</td>
-<td>api_key got while registering the application with connect4health</td>
+<td>api-key</td>
+<td>api-key got while registering the application with connect4health</td>
 <td>Required</td>
 </tr>
 <tr>
@@ -736,8 +736,8 @@ while creating a ticket.</p>
 <td></td>
 </tr>
 <tr>
-<td>api_secret</td>
-<td>api_secret got while registering the application with connect4health</td>
+<td>api-secret</td>
+<td>api-secret got while registering the application with connect4health</td>
 <td>Required</td>
 </tr>
 <tr>
@@ -762,8 +762,8 @@ provider will be sent.</p>
 
 <h2 id="create-ticket">Create Ticket</h2>
 <pre class="highlight shell"><code>    <span class="s2">"http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/create_ticket"</span>
-  In Headers: api_key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
-              api_secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
+  In Headers: api-key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
+              api-secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
 </code></pre>
 
 <blockquote>
@@ -835,8 +835,8 @@ provider will be sent.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>api_key</td>
-<td>api_key got while registering the application with connect4health</td>
+<td>api-key</td>
+<td>api-key got while registering the application with connect4health</td>
 <td>Required</td>
 </tr>
 <tr>
@@ -845,8 +845,8 @@ provider will be sent.</p>
 <td></td>
 </tr>
 <tr>
-<td>api_secret</td>
-<td>api_secret got while registering the application with connect4health</td>
+<td>api-secret</td>
+<td>api-secret got while registering the application with connect4health</td>
 <td>Required</td>
 </tr>
 <tr>
@@ -1014,8 +1014,8 @@ from &ldquo;Provider Categories&rdquo; end point. Category status should be sent
 
 <h2 id="ticket-status-update">Ticket status update</h2>
 <pre class="highlight shell"><code>    <span class="s2">"http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/update_status?id=202&amp;status=Reopen"</span>
-  In Headers: api_key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
-              api_secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
+  In Headers: api-key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
+              api-secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
 </code></pre>
 
 <blockquote>
@@ -1076,8 +1076,8 @@ Error Response:
 </tr>
 </thead><tbody>
 <tr>
-<td>api_key</td>
-<td>api_key got while registering the application with connect4health</td>
+<td>api-key</td>
+<td>api-key got while registering the application with connect4health</td>
 <td>Required</td>
 </tr>
 <tr>
@@ -1086,8 +1086,8 @@ Error Response:
 <td></td>
 </tr>
 <tr>
-<td>api_secret</td>
-<td>api_secret got while registering the application with connect4health</td>
+<td>api-secret</td>
+<td>api-secret got while registering the application with connect4health</td>
 <td>Required</td>
 </tr>
 <tr>
@@ -1131,8 +1131,8 @@ Error Response:
 
 <h2 id="create-general-comment">Create General Comment</h2>
 <pre class="highlight shell"><code>    <span class="s2">"http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/update_status?id=202&amp;status=Reopen"</span>
-  In Headers: api_key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
-              api_secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
+  In Headers: api-key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
+              api-secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
 </code></pre>
 
 <blockquote>
@@ -1192,8 +1192,8 @@ Error Response:
 </tr>
 </thead><tbody>
 <tr>
-<td>api_key</td>
-<td>api_key got while registering the application with connect4health</td>
+<td>api-key</td>
+<td>api-key got while registering the application with connect4health</td>
 <td>Required</td>
 </tr>
 <tr>
@@ -1202,8 +1202,8 @@ Error Response:
 <td></td>
 </tr>
 <tr>
-<td>api_secret</td>
-<td>api_secret got while registering the application with connect4health</td>
+<td>api-secret</td>
+<td>api-secret got while registering the application with connect4health</td>
 <td>Required</td>
 </tr>
 <tr>
@@ -1247,8 +1247,8 @@ Error Response:
 
 <h2 id="create-category-comment">Create Category Comment</h2>
 <pre class="highlight shell"><code>    <span class="s2">"http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/update_status?id=202&amp;status=Reopen"</span>
-  In Headers: api_key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
-              api_secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
+  In Headers: api-key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
+              api-secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
 </code></pre>
 
 <blockquote>
@@ -1308,8 +1308,8 @@ Error Response:
 </tr>
 </thead><tbody>
 <tr>
-<td>api_key</td>
-<td>api_key got while registering the application with connect4health</td>
+<td>api-key</td>
+<td>api-key got while registering the application with connect4health</td>
 <td>Required</td>
 </tr>
 <tr>
@@ -1318,8 +1318,8 @@ Error Response:
 <td></td>
 </tr>
 <tr>
-<td>api_secret</td>
-<td>api_secret got while registering the application with connect4health</td>
+<td>api-secret</td>
+<td>api-secret got while registering the application with connect4health</td>
 <td>Required</td>
 </tr>
 <tr>
