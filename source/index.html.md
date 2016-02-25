@@ -299,7 +299,6 @@ Success Response:
         "residents": [
             {
                 "fax_number": null,
-                "caretracker_id": null,
                 "resident_type_id": null,
                 "provider_id": 72136196,
                 "photo_content_type": "",
@@ -332,7 +331,6 @@ Success Response:
             },
             {
                 "fax_number": null,
-                "caretracker_id": null,
                 "resident_type_id": 1058366525,
                 "provider_id": 72136196,
                 "photo_content_type": "",
