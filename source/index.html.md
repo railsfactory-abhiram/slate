@@ -396,8 +396,11 @@ api-secret| api-secret got while registering the application with connect4health
           | Example API Secret: b19fszzt9e2z4wpu87r09zy58
 access_token| Should be sent through url  |  Required
           | Example Access Token: ssdfsdf7s87878sd878d87fd
+group_type_id  | Id of the Resident Group, giving this id will return all resident of a particular group | Optional
+    | Example group_type_id = 131131
 
 With the Access_token provided in the url, the specific provider will be identified, and the Account details of that provider will be sent in response.
+
 ## Get Provider's Status items
 
 ```shell
