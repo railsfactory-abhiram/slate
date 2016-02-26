@@ -20,10 +20,10 @@ search: true
 
 ### Getting Started
 
-  This session inducts the steps you need to take when you use the Connect4healthcare API. Registering in Connect4healthcare application is mandatory to use the REST APIs provided
+  This section inducts the steps you need to take when you use the Connect4healthcare API. Registering in Connect4healthcare application is mandatory to use the REST APIs provided
 
 ### Process
-  General procedure involved in using Connect4healthcare API is very simple. Follow the below steps.
+  The general procedure involved in using the Connect 4 Healthcare API is outlined in the steps below.
 
   * Get the authorization. Do the necessary user login steps.
   * Set up parameters. Decide which parameters you are passing to API and set their values or retrieve those values as input from the user of your application.
@@ -31,19 +31,19 @@ search: true
   * Make the request. You should invoke each request with its appropriate HTTP method: GET, PUT, DELETE, or POST.
   * Get the response and parse it for the data you need. Some of the data may be contained directly within the response, marked by appropriate tags, and some data may appear in the form of links to other resources.
   * Use the response data to do further operations. 
-  * The Connect4healthcare API will return the error code for the failed request or actions which helps the developers to know the exact reason for the failure.
+  * The Connect4Healthcare API will return an error code for the failed request or actions to help the developers identify the exact reason for a failure.
 
 ### Response Format
   The response returned can be in either JSON or XML. Each format specifies a way of encoding name-value pairs which comprise the response data. Each format has an associated mime-type which must be returned in the Content-type header along with the response.
 
 ### Request Format
-  Access tokens are similar to session tokens. Authorization can be performed with an access token that is submitted with every secure request. Make sure that the Access token is stored securely and make every request with the access token. For every request access_token is sent as an extra parameter. 
+  Access tokens are similar to session tokens. Authorization can be performed with an access token that is submitted with every secure request. Make sure that the Access token is stored securely and make every request with the access token. For every request access_token is sent as an extra parameter.
 
 
 # Authentication
 
 ```shell
-# With shell, you can just pass the correct header with each request
+# With shell, you can pass the correct header with each request
  "http://connecticket.railsfactory.com/api/authorize"
   In Headers: api-key: "8eb68e28cda407158cf9a8064bdd5351"
               api-secret: "b19fszzt9e2z4wpu87r09zy58"
@@ -73,7 +73,7 @@ Error Response:
 
 
 ### Authentication on all endpoints
-We require applications to authenticate all of their requests with Access Token. This visibility allows us to prevent abusive behavior, and it also helps us to further understand how categories of applications are using the API. We apply this understanding to better meet the needs of developers as we continue to evolve the platform. Register the Application with Connect4health and get your API_KEY and API_SECRET. With the api-key and api-secret send a request like below,
+We require applications to authenticate all of their requests with an Access Token. This visibility allows us to prevent abusive behavior and helps us understand how categories of applications are using the API. We apply this understanding to better meet the needs of developers as we continue to evolve the platform. Register the Application with Connect 4 Healthcare and get your API_KEY and API_SECRET. With the api_key and api_secret send a request like below,
 
 ### Resource URL
 
@@ -98,14 +98,14 @@ api-secret| api-secret got while registering the application with Connect4health
           | Example API Secret: b19fszzt9e2z4wpu87r09zy58
 
 In Response, Access_token will be provided, with success message, this means that the app and user has been authorized successfully.
-This access token should be used in further requests along with api-key and api-secret.
+This access token must be used in further requests along with api-key and api-secret.
 
 
-# Tickets
+# Messages
 
-## Get All Tickets
+## Get All Messages
 
-This endpoint retrieves all the tickets created by the provider.
+This endpoint retrieves all the messages created by the provider.
 
 ```shell
     "http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/tickets"
@@ -166,7 +166,7 @@ Requires authentication?| Yes
 
 ### Query Parameters
 
-Send the below parameters in Headers
+The parameters below are required/must be sent in the header of each query
 
 Parameter | Description | Required/Optional
 --------- | ----------- | -----------------
@@ -177,10 +177,9 @@ api-secret| api-secret got while registering the application with connect4health
 access_token| Should be sent through url  |  Required
           | Example Access Token: ssdfsdf7s87878sd878d87fd
 
-With the ***Access token*** provided in the url, the particular provider will be identified, and all the tickets created by the 
-provider will be sent.
+The Access token provided in the url will specify the provider and all messages created by that provider will be sent
 
-## Getting a specific Ticket
+## Getting a specific message with it's attachment(s) and associated comments
 
 ```shell
 curl "http://connecticket.railsfactory.org/api/356kdpiamhkz7a43nu0e2ldr9/ticket_detail?id=201"
@@ -253,7 +252,7 @@ Error Response:
     }
 
 ```
-This endpoint retrieves a specific ticket created by the provider.
+This endpoint retrieves a specific message with it's attachment(s) and comments created by the provider and subscriber.
 
 ### Resource URL
 
@@ -278,10 +277,10 @@ access_token| Should be sent through url  |  Required
 id | Unique ID of the ticket  |   Required
    | Example ID: 12
 
-Access Token helps in identifying the respective provider. The Ticket ID helps in displaying the respective ticket.  
+Access_token helps in identifies the specific provider. The Ticket ID identifies the specific ticket.  
 
 
-## Get All Residents
+## Get All Accounts
 
 ```shell
     "http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/all_residents"
@@ -374,7 +373,7 @@ Error Response:
     }
 
 ```
-This endpoint retrieves the details of all the Residents of a particular provider.
+This endpoint retrieves the details of all the Accounts in a provider's Connect 4 Healthcare service.
 
 ### Resource URL
 
@@ -398,9 +397,8 @@ api-secret| api-secret got while registering the application with connect4health
 access_token| Should be sent through url  |  Required
           | Example Access Token: ssdfsdf7s87878sd878d87fd
 
-With the ***Access token*** provided in the url, the particular provider will be identified, and Residents of that particular
-provider will be sent in response.
-## Get Categories
+With the Access_token provided in the url, the specific provider will be identified, and the Account details of that provider will be sent in response.
+## Get Provider's Status items
 
 ```shell
     "http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/provider_categories"
@@ -430,8 +428,7 @@ Error Response:
   
 ```
 
-This endpoint will retrieve all the ticket categories created by particular provider. These categories have three status that needs to be set
-while creating a ticket.
+This endpoint will retrieve all the available status items created by the provider. These status items have three status' that can be set when creating a message.
 
 ### Resource URL
 
@@ -455,10 +452,9 @@ api-secret| api-secret got while registering the application with connect4health
 access_token| Should be sent through url  |  Required
           | Example Access Token: ssdfsdf7s87878sd878d87fd
 
-With the ***Access token*** provided in the url, the particular provider will be identified, and Categories of that particular
-provider will be sent.
+With the Access_token provided in the url, the specific provider will be identified, and available status items of that provider will be sent.
 
-## Create Ticket
+## Create new Message
 
 ```shell
     "http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/create_ticket"
@@ -501,7 +497,7 @@ provider will be sent.
 
 ```
 
-This endpoint will create a ticket for a particular provider.
+This endpoint will create a message/update for an Account Message Recipient (subscriber) of a specific provider.
 
 ### Resource URL
 
@@ -541,8 +537,8 @@ general_comments | general comments of the ticket | Optional
                  | Example general comments: Hi welcome!
 attachment[:attachment_id]  | Add the attachment like attachment_1 = #<File:/tmp/RackMultipart20160223-10206-8nvy6z-0>, attachment_2 = #<File:/tmp/RackMultipart20160223-10206-8nvy6z-0>...etc.
 
-Along with the above parameters: Category status also should be set. Category details of a particular provider can be fetched
-from "Provider Categories" end point. Category status should be sent like below along with the category parameters(parameters we got from provider categories end point).
+Along with the above parameters: Status item also should be sent. Status item details of a particular provider can be fetched
+from "Provider's status items" end point. Available status item should be sent like below along with the parameters above.
 
 Parameter | Description
 --------- | -----------
@@ -558,9 +554,10 @@ category_[:id] | Status of the category
             | Example Category ID : category_16 => "Potential Issue"
 category_comments_[:id]  | Comment for this category
                       | Example Category Comments ID  : category_comments_16 => "There are no comments."
-Once the parameters are sent to the end point, ticket will be created and a success status will be sent.
+            
+Once the parameters are sent to the end point, the message will be created and posted for the account recipients indicated and a success status will be sent.
 
-## Ticket status update
+## Message Status Update
 
 ```shell
     "http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/update_status?id=202&status=Reopen"
@@ -591,7 +588,7 @@ Error Response:
       "message": "Invalid Ticket ID/ <:respective error message will appear here>",
     }
 ```
-This end point updates the status of the ticket changed by the provider. 
+This end point updates the status of the ticket changed by the provider.
 
 
 ### Resource URL
@@ -621,7 +618,7 @@ status | status to be set for the ticket | Required
        | Example status: In Progress
 
 
-With the respective Ticket ID, the status of the ticket updates.
+With the respective Ticket ID, the status of the ticket is updated.
 
 ## Create General Comment
 
@@ -654,7 +651,7 @@ Error Response:
       "message": "Invalid Ticket ID",
     }
 ```
-This end point is used to create comment for ticket. 
+This end point is used to create comment for Message. 
 
 ### Resource URL
 
@@ -682,9 +679,9 @@ ticket_id | Unique ID of the ticket  |   Required
 comment | comment given by provider | Required
        | Example comment: Hi! Welcome!
 
-Comment for this particular ticket is created by the above parameters.
+Comment for this particular message is created by the above parameters.
 
-## Create Category Comment
+## Create Status item comment
 
 ```shell
     "http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/update_status?id=202&status=Reopen"
@@ -715,7 +712,7 @@ Error Response:
       "message": "Invalid Ticket ID",
     }
 ```
-This end point is used to create comment for a particular category. 
+This end point is used to create comment for a particular status item. 
 
 ### Resource URL
 
@@ -745,5 +742,5 @@ comment | comment given by provider | Required
 category_id | Unique ID of the category | Required
             | Example category ID: 2
 
-Comment for this particular category is created by the above parameters.
+Comment for this particular status item is created by the above parameters.
 
