@@ -123,11 +123,11 @@
 
 <h3 id="getting-started">Getting Started</h3>
 
-<p>This session inducts the steps you need to take when you use the Connect4healthcare API. Registering in Connect4healthcare application is mandatory to use the REST APIs provided</p>
+<p>This section inducts the steps you need to take when you use the Connect4healthcare API. Registering in Connect4healthcare application is mandatory to use the REST APIs provided</p>
 
 <h3 id="process">Process</h3>
 
-<p>General procedure involved in using Connect4healthcare API is very simple. Follow the below steps.</p>
+<p>The general procedure involved in using the Connect 4 Healthcare API is outlined in the steps below.</p>
 
 <ul>
 <li>Get the authorization. Do the necessary user login steps.</li>
@@ -136,7 +136,7 @@
 <li>Make the request. You should invoke each request with its appropriate HTTP method: GET, PUT, DELETE, or POST.</li>
 <li>Get the response and parse it for the data you need. Some of the data may be contained directly within the response, marked by appropriate tags, and some data may appear in the form of links to other resources.</li>
 <li>Use the response data to do further operations. </li>
-<li>The Connect4healthcare API will return the error code for the failed request or actions which helps the developers to know the exact reason for the failure.</li>
+<li>The Connect4Healthcare API will return an error code for the failed request or actions to help the developers identify the exact reason for a failure.</li>
 </ul>
 
 <h3 id="response-format">Response Format</h3>
@@ -145,10 +145,10 @@
 
 <h3 id="request-format">Request Format</h3>
 
-<p>Access tokens are similar to session tokens. Authorization can be performed with an access token that is submitted with every secure request. Make sure that the Access token is stored securely and make every request with the access token. For every request access_token is sent as an extra parameter. </p>
+<p>Access tokens are similar to session tokens. Authorization can be performed with an access token that is submitted with every secure request. Make sure that the Access token is stored securely and make every request with the access token. For every request access_token is sent as an extra parameter.</p>
 
 <h1 id="authentication">Authentication</h1>
-<pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+<pre class="highlight shell"><code><span class="c"># With shell, you can pass the correct header with each request</span>
  <span class="s2">"http://connecticket.railsfactory.com/api/authorize"</span>
   In Headers: api-key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
               api-secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
@@ -175,7 +175,7 @@
 
 <h3 id="authentication-on-all-endpoints">Authentication on all endpoints</h3>
 
-<p>We require applications to authenticate all of their requests with Access Token. This visibility allows us to prevent abusive behavior, and it also helps us to further understand how categories of applications are using the API. We apply this understanding to better meet the needs of developers as we continue to evolve the platform. Register the Application with Connect4health and get your API_KEY and API_SECRET. With the api-key and api-secret send a request like below,</p>
+<p>We require applications to authenticate all of their requests with an Access Token. This visibility allows us to prevent abusive behavior and helps us understand how categories of applications are using the API. We apply this understanding to better meet the needs of developers as we continue to evolve the platform. Register the Application with Connect 4 Healthcare and get your API_KEY and API_SECRET. With the api_key and api_secret send a request like below,</p>
 
 <h3 id="resource-url">Resource URL</h3>
 
@@ -235,13 +235,13 @@
 </tbody></table>
 
 <p>In Response, Access_token will be provided, with success message, this means that the app and user has been authorized successfully.
-This access token should be used in further requests along with api-key and api-secret.</p>
+This access token must be used in further requests along with api-key and api-secret.</p>
 
-<h1 id="tickets">Tickets</h1>
+<h1 id="messages">Messages</h1>
 
-<h2 id="get-all-tickets">Get All Tickets</h2>
+<h2 id="get-all-messages">Get All Messages</h2>
 
-<p>This endpoint retrieves all the tickets created by the provider.</p>
+<p>This endpoint retrieves all the messages created by the provider.</p>
 <pre class="highlight shell"><code>    <span class="s2">"http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/tickets"</span>
   In Headers: api-key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
               api-secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
@@ -311,7 +311,7 @@ This access token should be used in further requests along with api-key and api-
 
 <h3 id="query-parameters">Query Parameters</h3>
 
-<p>Send the below parameters in Headers</p>
+<p>The parameters below are required/must be sent in the header of each query</p>
 
 <table><thead>
 <tr>
@@ -352,10 +352,9 @@ This access token should be used in further requests along with api-key and api-
 </tr>
 </tbody></table>
 
-<p>With the <strong><em>Access token</em></strong> provided in the url, the particular provider will be identified, and all the tickets created by the 
-provider will be sent.</p>
+<p>The Access token provided in the url will specify the provider and all messages created by that provider will be sent</p>
 
-<h2 id="getting-a-specific-ticket">Getting a specific Ticket</h2>
+<h2 id="getting-a-specific-message-with-it-39-s-attachment-s-and-associated-comments">Getting a specific message with it&rsquo;s attachment(s) and associated comments</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"http://connecticket.railsfactory.org/api/356kdpiamhkz7a43nu0e2ldr9/ticket_detail?id=201"</span>
  In Headers:  api-key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
               api-secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
@@ -426,7 +425,7 @@ provider will be sent.</p>
 
 </code></pre>
 
-<p>This endpoint retrieves a specific ticket created by the provider.</p>
+<p>This endpoint retrieves a specific message with it&rsquo;s attachment(s) and comments created by the provider and subscriber.</p>
 
 <h3 id="resource-url">Resource URL</h3>
 
@@ -501,9 +500,9 @@ provider will be sent.</p>
 </tr>
 </tbody></table>
 
-<p>Access Token helps in identifying the respective provider. The Ticket ID helps in displaying the respective ticket.</p>
+<p>Access_token helps in identifies the specific provider. The Ticket ID identifies the specific ticket.  </p>
 
-<h2 id="get-all-residents">Get All Residents</h2>
+<h2 id="get-all-accounts">Get All Accounts</h2>
 <pre class="highlight shell"><code>    <span class="s2">"http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/all_residents"</span>
   In Headers: api-key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
               api-secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
@@ -518,6 +517,7 @@ provider will be sent.</p>
         "residents": [
             {
                 "fax_number": null,
+                "caretracker_id": null,
                 "resident_type_id": null,
                 "provider_id": 72136196,
                 "photo_content_type": "",
@@ -550,6 +550,7 @@ provider will be sent.</p>
             },
             {
                 "fax_number": null,
+                "caretracker_id": null,
                 "resident_type_id": 1058366525,
                 "provider_id": 72136196,
                 "photo_content_type": "",
@@ -592,7 +593,7 @@ provider will be sent.</p>
 
 </code></pre>
 
-<p>This endpoint retrieves the details of all the Residents of a particular provider.</p>
+<p>This endpoint retrieves the details of all the Accounts in a provider&rsquo;s Connect 4 Healthcare service.</p>
 
 <h3 id="resource-url">Resource URL</h3>
 
@@ -667,10 +668,9 @@ provider will be sent.</p>
 </tr>
 </tbody></table>
 
-<p>With the <strong><em>Access token</em></strong> provided in the url, the particular provider will be identified, and Residents of that particular
-provider will be sent in response.</p>
+<p>With the Access_token provided in the url, the specific provider will be identified, and the Account details of that provider will be sent in response.</p>
 
-<h2 id="get-categories">Get Categories</h2>
+<h2 id="get-provider-39-s-status-items">Get Provider&rsquo;s Status items</h2>
 <pre class="highlight shell"><code>    <span class="s2">"http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/provider_categories"</span>
   In Headers: api-key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
               api-secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
@@ -697,8 +697,7 @@ provider will be sent in response.</p>
 
 </code></pre>
 
-<p>This endpoint will retrieve all the ticket categories created by particular provider. These categories have three status that needs to be set
-while creating a ticket.</p>
+<p>This endpoint will retrieve all the available status items created by the provider. These status items have three status&rsquo; that can be set when creating a message.</p>
 
 <h3 id="resource-url">Resource URL</h3>
 
@@ -763,10 +762,9 @@ while creating a ticket.</p>
 </tr>
 </tbody></table>
 
-<p>With the <strong><em>Access token</em></strong> provided in the url, the particular provider will be identified, and Categories of that particular
-provider will be sent.</p>
+<p>With the Access_token provided in the url, the specific provider will be identified, and available status items of that provider will be sent.</p>
 
-<h2 id="create-ticket">Create Ticket</h2>
+<h2 id="create-new-message">Create new Message</h2>
 <pre class="highlight shell"><code>    <span class="s2">"http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/create_ticket"</span>
   In Headers: api-key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
               api-secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
@@ -807,7 +805,7 @@ provider will be sent.</p>
 
 </code></pre>
 
-<p>This endpoint will create a ticket for a particular provider.</p>
+<p>This endpoint will create a message/update for an Account Message Recipient (subscriber) of a specific provider.</p>
 
 <h3 id="resource-url">Resource URL</h3>
 
@@ -957,8 +955,8 @@ provider will be sent.</p>
 </tr>
 </tbody></table>
 
-<p>Along with the above parameters: Category status also should be set. Category details of a particular provider can be fetched
-from &ldquo;Provider Categories&rdquo; end point. Category status should be sent like below along with the category parameters(parameters we got from provider categories end point).</p>
+<p>Along with the above parameters: Status item also should be sent. Status item details of a particular provider can be fetched
+from &ldquo;Provider&rsquo;s status items&rdquo; end point. Available status item should be sent like below along with the parameters above.</p>
 
 <table><thead>
 <tr>
@@ -1016,9 +1014,9 @@ from &ldquo;Provider Categories&rdquo; end point. Category status should be sent
 </tr>
 </tbody></table>
 
-<p>Once the parameters are sent to the end point, ticket will be created and a success status will be sent.</p>
+<p>Once the parameters are sent to the end point, the message will be created and posted for the account recipients indicated and a success status will be sent.</p>
 
-<h2 id="ticket-status-update">Ticket status update</h2>
+<h2 id="message-status-update">Message Status Update</h2>
 <pre class="highlight shell"><code>    <span class="s2">"http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/update_status?id=202&amp;status=Reopen"</span>
   In Headers: api-key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
               api-secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
@@ -1048,7 +1046,7 @@ Error Response:
     }
 </code></pre>
 
-<p>This end point updates the status of the ticket changed by the provider. </p>
+<p>This end point updates the status of the ticket changed by the provider.</p>
 
 <h3 id="resource-url">Resource URL</h3>
 
@@ -1133,7 +1131,7 @@ Error Response:
 </tr>
 </tbody></table>
 
-<p>With the respective Ticket ID, the status of the ticket updates.</p>
+<p>With the respective Ticket ID, the status of the ticket is updated.</p>
 
 <h2 id="create-general-comment">Create General Comment</h2>
 <pre class="highlight shell"><code>    <span class="s2">"http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/update_status?id=202&amp;status=Reopen"</span>
@@ -1164,7 +1162,7 @@ Error Response:
     }
 </code></pre>
 
-<p>This end point is used to create comment for ticket. </p>
+<p>This end point is used to create comment for Message. </p>
 
 <h3 id="resource-url">Resource URL</h3>
 
@@ -1249,9 +1247,9 @@ Error Response:
 </tr>
 </tbody></table>
 
-<p>Comment for this particular ticket is created by the above parameters.</p>
+<p>Comment for this particular message is created by the above parameters.</p>
 
-<h2 id="create-category-comment">Create Category Comment</h2>
+<h2 id="create-status-item-comment">Create Status item comment</h2>
 <pre class="highlight shell"><code>    <span class="s2">"http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/update_status?id=202&amp;status=Reopen"</span>
   In Headers: api-key: <span class="s2">"8eb68e28cda407158cf9a8064bdd5351"</span>
               api-secret: <span class="s2">"b19fszzt9e2z4wpu87r09zy58"</span>
@@ -1280,7 +1278,7 @@ Error Response:
     }
 </code></pre>
 
-<p>This end point is used to create comment for a particular category. </p>
+<p>This end point is used to create comment for a particular status item. </p>
 
 <h3 id="resource-url">Resource URL</h3>
 
@@ -1375,7 +1373,7 @@ Error Response:
 </tr>
 </tbody></table>
 
-<p>Comment for this particular category is created by the above parameters.</p>
+<p>Comment for this particular status item is created by the above parameters.</p>
 
           <h1 id="http-error-codes">HTTP Error Codes</h1>
 
