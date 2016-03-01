@@ -538,7 +538,7 @@ ticket_status  | status of the ticket   | Required
                | Example Ticket Status: New
 general_comments | general comments of the ticket | Optional
                  | Example general comments: Hi welcome!
-attachment[:attachment_id]  | Add the attachment like attachment_1 = #<File:/tmp/RackMultipart20160223-10206-8nvy6z-0>, attachment_2 = #<File:/tmp/RackMultipart20160223-10206-8nvy6z-0>...etc.
+attachment[:items]  | Add the attachment in an array like attachment[:items] = [#<File:/tmp/RackMultipart20160223-10206-8nvy6z-0>, attachment_2 = #<File:/tmp/RackMultipart20160223-10206-8nvy6z-0>...etc.]
 
 Along with the above parameters: Status item also should be sent. Status item details of a particular provider can be fetched
 from "Provider's status items" end point. Available status item should be sent like below along with the parameters above.
