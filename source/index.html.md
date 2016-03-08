@@ -138,6 +138,7 @@ This endpoint retrieves all the messages created by the provider.
                 "sent_to_family": null,
                 "title": "Ticket  commment",
                 "employee_id": 81987870
+                "read": true
             }
         ]
     }
