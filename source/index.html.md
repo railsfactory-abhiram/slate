@@ -44,7 +44,7 @@ search: true
 
 ```shell
 # With shell, you can pass the correct header with each request
- "http://connecticket.railsfactory.com/api/authorize"
+ "http://connecticket-new.railsfactory.com/api/authorize"
   In Headers: api-key: "8eb68e28cda407158cf9a8064bdd5351"
               api-secret: "b19fszzt9e2z4wpu87r09zy58"
 ```
@@ -77,7 +77,7 @@ We require applications to authenticate all of their requests with an Access Tok
 
 ### Resource URL
 
-`http://connecticket.railsfactory.com/api/authorize`
+`http://connecticket-new.railsfactory.com/api/authorize`
 
 ### Verb:
 POST
@@ -108,7 +108,7 @@ This access token must be used in further requests along with api-key and api-se
 This endpoint retrieves all the messages created by the provider.
 
 ```shell
-    "http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/tickets"
+    "http://connecticket-new.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/tickets"
   In Headers: api-key: "8eb68e28cda407158cf9a8064bdd5351"
               api-secret: "b19fszzt9e2z4wpu87r09zy58"
 ```
@@ -155,7 +155,7 @@ Error Response:
 ```
 ### Resource URL
 
-`http://connecticket.railsfactory.com/api/<:access_token_got_from_authentication>/tickets`
+`http://connecticket-new.railsfactory.com/api/<:access_token_got_from_authentication>/tickets`
 
 ### Verb:
 GET
@@ -257,7 +257,7 @@ This endpoint retrieves a specific message with it's attachment(s) and comments 
 
 ### Resource URL
 
-`http://connecticket.railsfactory.com/api/<:access_token_got_from_authentication>/ticket_detail`
+`http://connecticket-new.railsfactory.com/api/<:access_token_got_from_authentication>/ticket_detail`
 
 ### Verb:
 GET
@@ -284,7 +284,7 @@ Access_token helps in identifies the specific provider. The Ticket ID identifies
 ## Get All Accounts
 
 ```shell
-    "http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/all_residents"
+    "http://connecticket-new.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/all_residents"
   In Headers: api-key: "8eb68e28cda407158cf9a8064bdd5351"
               api-secret: "b19fszzt9e2z4wpu87r09zy58"
 ```
@@ -378,7 +378,7 @@ This endpoint retrieves the details of all the Accounts in a provider's Connect 
 
 ### Resource URL
 
-`http://connecticket.railsfactory.com/api/<:access_token_got_from_authentication>/all_residents`
+`http://connecticket-new.railsfactory.com/api/<:access_token_got_from_authentication>/all_residents`
 
 ### Verb:
 GET
@@ -405,7 +405,7 @@ With the Access_token provided in the url, the specific provider will be identif
 ## Get Provider's Status items
 
 ```shell
-    "http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/provider_categories"
+    "http://connecticket-new.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/provider_categories"
   In Headers: api-key: "8eb68e28cda407158cf9a8064bdd5351"
               api-secret: "b19fszzt9e2z4wpu87r09zy58"
 ```
@@ -436,7 +436,7 @@ This endpoint will retrieve all the available status items created by the provid
 
 ### Resource URL
 
-`http://connecticket.railsfactory.com/api/<:access_token_got_from_authentication>/provider_categories`
+`http://connecticket-new.railsfactory.com/api/<:access_token_got_from_authentication>/provider_categories`
 
 ### Verb:
 GET
@@ -454,14 +454,15 @@ api-key   | api-key got while registering the application with connect4health   
 api-secret| api-secret got while registering the application with connect4health |  Required
           | Example API Secret: b19fszzt9e2z4wpu87r09zy58
 access_token| Should be sent through url  |  Required
-          | Example Access Token: ssdfsdf7s87878sd878d87fd
+          | Example Access Token: b3h4e3on3f7s87878sd878d87fd
+resident_id| Should sent as a URL parameter | Required
 
 With the Access_token provided in the url, the specific provider will be identified, and available status items of that provider will be sent.
 
 ## Create new Message
 
 ```shell
-    "http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/create_ticket"
+    "http://connecticket-new.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/create_ticket"
   In Headers: api-key: "8eb68e28cda407158cf9a8064bdd5351"
               api-secret: "b19fszzt9e2z4wpu87r09zy58"
 ```
@@ -505,7 +506,7 @@ This endpoint will create a message/update for an Account Message Recipient (sub
 
 ### Resource URL
 
-`GET http://connecticket.railsfactory.com/api/<:access_token_got_from_authentication>/create_ticket`
+`GET http://connecticket-new.railsfactory.com/api/<:access_token_got_from_authentication>/create_ticket`
 
 ### Verb:
 GET
@@ -564,7 +565,7 @@ Once the parameters are sent to the end point, the message will be created and p
 ## Message Status Update
 
 ```shell
-    "http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/update_status?id=202&status=Reopen"
+    "http://connecticket-new.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/update_status?id=202&status=Reopen"
   In Headers: api-key: "8eb68e28cda407158cf9a8064bdd5351"
               api-secret: "b19fszzt9e2z4wpu87r09zy58"
 ```
@@ -597,7 +598,7 @@ This end point updates the status of the ticket changed by the provider.
 
 ### Resource URL
 
-`http://connecticket.railsfactory.com/api/<:access_token_got_from_authentication>/update_status`
+`http://connecticket-new.railsfactory.com/api/<:access_token_got_from_authentication>/update_status`
 
 ### Verb:
 POST
@@ -627,7 +628,7 @@ With the respective Ticket ID, the status of the ticket is updated.
 ## Create General Comment
 
 ```shell
-    "http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/update_status?id=202&status=Reopen"
+    "http://connecticket-new.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/update_status?id=202&status=Reopen"
   In Headers: api-key: "8eb68e28cda407158cf9a8064bdd5351"
               api-secret: "b19fszzt9e2z4wpu87r09zy58"
 ```
@@ -659,7 +660,7 @@ This end point is used to create comment for Message.
 
 ### Resource URL
 
-`http://connecticket.railsfactory.com/api/<:access_token_got_from_authentication>/create_comment`
+`http://connecticket-new.railsfactory.com/api/<:access_token_got_from_authentication>/create_comment`
 
 ### Verb:
 POST
@@ -688,7 +689,7 @@ Comment for this particular message is created by the above parameters.
 ## Create Status item comment
 
 ```shell
-    "http://connecticket.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/update_status?id=202&status=Reopen"
+    "http://connecticket-new.railsfactory.com/api/356kdpiamhkz7a43nu0e2ldr9/update_status?id=202&status=Reopen"
   In Headers: api-key: "8eb68e28cda407158cf9a8064bdd5351"
               api-secret: "b19fszzt9e2z4wpu87r09zy58"
 ```
@@ -720,7 +721,7 @@ This end point is used to create comment for a particular status item.
 
 ### Resource URL
 
-`http://connecticket.railsfactory.com/api/<:access_token_got_from_authentication>/create_comment`
+`http://connecticket-new.railsfactory.com/api/<:access_token_got_from_authentication>/create_comment`
 
 ### Verb:
 POST
